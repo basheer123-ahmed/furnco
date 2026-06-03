@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Design Stories & Interior Insights | Furnco Interiors</title>
+    <meta name="description" content="Explore luxury interiors, design inspiration, project walkthroughs, and expert insights from Furnco Interiors.">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Global Animations JS -->
+    <script src="assets/js/main.js" defer></script>
+
+    <style>
+      /* ── Base navbar ─────────────────────────────────────── */
+      #site-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        background: rgba(10, 6, 4, 0.95) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+        transition: background 0.5s ease, box-shadow 0.5s ease, padding 0.4s ease;
+        padding: 0;
+      }
+      #site-header.nav-top {
+        background: rgba(10, 6, 4, 0.95) !important;
+      }
+      #site-header.nav-scrolled {
+        background: rgba(10, 6, 4, 0.95) !important;
+      }
+
+      /* ── Inner layout ────────────────────────────────────── */
+      .nav-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 76px;
+        transition: height 0.4s ease;
+      }
+      #site-header.nav-scrolled .nav-inner {
+        height: 64px;
+      }
+
+      /* ── Logo area ───────────────────────────────────────── */
+      .nav-logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .nav-logo-wrap img {
+        height: 36px;
+        width: auto;
+        filter: brightness(0) invert(1) !important;
+        transition: filter 0.4s ease, height 0.4s ease;
+      }
+      #site-header.nav-scrolled .nav-logo-wrap img {
+        height: 32px;
+      }
+
+      /* ── Desktop nav links ───────────────────────────────── */
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        list-style: none;
+        margin: 0; padding: 0;
+      }
+      .nav-links a {
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.815rem;
+        font-weight: 500;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.80) !important;
+        text-decoration: none;
+        padding-bottom: 4px;
+        transition: color 0.3s ease;
+      }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px; left: 0;
+        width: 0; height: 1.5px;
+        background: linear-gradient(90deg, #c9a84c, #f5d78e);
+        border-radius: 2px;
+        transition: width 0.35s cubic-bezier(.22,1,.36,1);
+      }
+      .nav-links a:hover,
+      .nav-links a.nav-active {
+        color: #f0d080 !important;
+      }
+      .nav-links a:hover::after,
+      .nav-links a.nav-active::after {
+        width: 100%;
+      }
+
+      /* ── CTA button ──────────────────────────────────────── */
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 26px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.775rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #1a0d00;
+        background: linear-gradient(135deg, #c9a84c 0%, #f5d78e 50%, #c9a84c 100%);
+        background-size: 200% auto;
+        border-radius: 2px;
+        border: none;
+        transition: all 0.4s cubic-bezier(.22,1,.36,1);
+        box-shadow: 0 4px 16px rgba(201,168,76,0.30);
+        position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .nav-cta::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
+        transform: translateX(-100%);
+        transition: transform 0.55s ease;
+      }
+      .nav-cta:hover {
+        background-position: right center;
+        box-shadow: 0 6px 24px rgba(201,168,76,0.50);
+        transform: translateY(-1px);
+        color: #1a0d00;
+      }
+      .nav-cta:hover::before { transform: translateX(100%); }
+
+      /* ── Mobile hamburger ────────────────────────────────── */
+      #nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(255,255,255,0.22) !important;
+        border-radius: 4px;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        transition: border-color 0.3s;
+      }
+      #nav-hamburger:hover { border-color: rgba(201,168,76,0.6) !important; }
+      .ham-line {
+        width: 20px;
+        height: 1.5px;
+        background: #fff !important;
+        border-radius: 2px;
+        transition: all 0.35s cubic-bezier(.22,1,.36,1);
+        transform-origin: center;
+      }
+      #nav-hamburger.is-open .ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      #nav-hamburger.is-open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      #nav-hamburger.is-open .ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+      /* ── Mobile dropdown ─────────────────────────────────── */
+      #mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 99;
+        background: rgba(10,6,4,0.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        pointer-events: none;
+      }
+      #mobile-menu.is-open {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+      .mobile-nav-link {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: rgba(255,255,255,0.85);
+        text-decoration: none;
+        transition: color 0.3s;
+        letter-spacing: 0.04em;
+      }
+      .mobile-nav-link:hover { color: #f0d080; }
+      .mobile-nav-close {
+        position: absolute;
+        top: 24px; right: 24px;
+        width: 44px; height: 44px;
+        border: 1px solid rgba(255,255,255,0.2) !important;
+        border-radius: 50%;
+        background: transparent;
+        color: white !important;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s;
+      }
+      .mobile-nav-close:hover { border-color: #c9a84c !important; color: #c9a84c !important; }
+
+      /* ── Gold thin line below navbar (only when scrolled) ── */
+      #nav-gold-line {
+        position: absolute;
+        bottom: 0; left: 0;
+        height: 1px;
+        width: 0%;
+        background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+        transition: width 0.6s ease;
+      }
+      #site-header.nav-scrolled #nav-gold-line { width: 100%; }
+
+      /* ── Responsive ──────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .nav-links, .nav-cta { display: none !important; }
+        #nav-hamburger { display: flex; }
+      }
+
+      /* Base Style Overrides */
+      body {
+        background-color: #F8F3EC; /* Light skin luxury background */
+        color: #0A0604;
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Premium Typography */
+      .heading-luxury {
+        font-family: 'Playfair Display', serif;
+        color: #0A0604;
+      }
+
+      /* Gold Accents */
+      .text-gold {
+        color: #D4AF37;
+      }
+      .bg-gold {
+        background-color: #D4AF37;
+      }
+      .border-gold {
+        borderColor: #D4AF37;
+      }
+
+      /* Category Pills & Filters */
+      .filter-btn {
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .filter-btn.active {
+        background-color: #0A0604;
+        color: #F8F3EC;
+        border-color: #0A0604;
+      }
+
+      /* Interactive Before/After Comparison Slider */
+      .comparison-slider-container {
+        position: relative;
+        width: 100%;
+        height: 480px;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0 20px 40px rgba(10, 6, 4, 0.12);
+      }
+      @media(max-width: 768px) {
+        .comparison-slider-container {
+          height: 320px;
+        }
+      }
+      .comparison-slider-img {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+      }
+      .img-after {
+        z-index: 2;
+      }
+      .img-before {
+        z-index: 1;
+      }
+      .comparison-slider-resize {
+        position: absolute;
+        top: 0; left: 0;
+        height: 100%;
+        width: 50%;
+        overflow: hidden;
+        z-index: 2;
+        border-right: 2px solid #D4AF37;
+      }
+      .comparison-slider-resize img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .comparison-slider-handle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #0A0604;
+        border: 2px solid #D4AF37;
+        color: #D4AF37;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+        cursor: ew-resize;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: transform 0.2s;
+        pointer-events: none; /* Let parent container capture move events */
+      }
+      .comparison-slider-container:hover .comparison-slider-handle {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      /* Premium Card Hover zoom and soft shadows */
+      .card-premium {
+        background-color: #FDFBF7;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 20px rgba(10, 6, 4, 0.02);
+      }
+      .card-premium:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(10, 6, 4, 0.08);
+        border-color: rgba(212, 175, 55, 0.4);
+      }
+
+      /* Video card styling */
+      .video-card-premium {
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0 15px 35px rgba(10, 6, 4, 0.08);
+        cursor: pointer;
+      }
+      .video-card-premium img {
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .video-card-premium:hover img {
+        transform: scale(1.08);
+      }
+      .video-play-btn {
+        width: 56px;
+        height: 56px;
+        background: rgba(10, 6, 4, 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #F8F3EC;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 8px 32px rgba(10, 6, 4, 0.18);
+        position: relative;
+      }
+      .video-play-btn::before {
+        content: '';
+        position: absolute;
+        inset: -5px;
+        border: 1px dashed rgba(212, 175, 55, 0.55);
+        border-radius: 50%;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: spin-slow 16s linear infinite;
+      }
+      @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .video-card-premium:hover .video-play-btn {
+        background: #D4AF37;
+        border-color: #D4AF37;
+        color: #0A0604;
+        transform: scale(1.06);
+        box-shadow: 0 12px 40px rgba(212, 175, 55, 0.45);
+      }
+      .video-card-premium:hover .video-play-btn::before {
+        inset: -8px;
+        border-color: #D4AF37;
+      }
+
+      /* Modal Style for Video Lightbox */
+      .video-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        background: rgba(10, 6, 4, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        padding: 24px;
+      }
+      .video-modal.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .video-modal-content {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        aspect-ratio: 16/9;
+        background: #000;
+        border-radius: 4px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        transform: scale(0.95);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .video-modal.active .video-modal-content {
+        transform: scale(1);
+      }
+      .video-modal-close {
+        position: absolute;
+        top: -48px;
+        right: 0;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+      .video-modal-close:hover {
+        color: #D4AF37;
+      }
+
+      /* Parallax & Grid Decor */
+      .luxury-grid-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+        background-size: 80px 80px;
+        background-position: center center;
+        mask-image: radial-gradient(circle, black 40%, transparent 80%);
+        -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+        pointer-events: none;
+      }
+
+      /* Premium Gold Button */
+      .btn-luxury-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: linear-gradient(135deg, #c9a84c 0%, #f5d78e 50%, #c9a84c 100%);
+        color: #0A0604;
+        padding: 14px 32px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        border-radius: 2px;
+        box-shadow: 0 8px 25px rgba(201,168,76,0.35);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        text-decoration: none;
+      }
+      .btn-luxury-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 35px rgba(201,168,76,0.55);
+      }
+      .btn-luxury-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid rgba(10, 6, 4, 0.2);
+        color: #0A0604;
+        padding: 14px 32px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        border-radius: 2px;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        text-decoration: none;
+      }
+      .btn-luxury-ghost:hover {
+        border-color: #D4AF37;
+        color: #D4AF37;
+      }
+
+      /* Scroll triggers opacity animations */
+      .anim-fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      
+      /* Explicit hero padding to prevent overlapping with the fixed navbar */
+      .blogs-hero {
+        padding-top: 130px;
+        padding-bottom: 80px;
+      }
+      @media (min-width: 768px) {
+        .blogs-hero {
+          padding-top: 180px;
+          padding-bottom: 110px;
+        }
+      }
+    </style>
+    <!-- Floating Contact Buttons (Call & WhatsApp) -->
+    <script src="assets/js/floating-contact.js" defer></script>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header id="site-header" class="nav-scrolled">
+      <div class="nav-inner">
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo-wrap" aria-label="Furnco Interiors home">
+          <img src="images/logo.png" alt="Furnco Interiors logo" id="nav-logo-img">
+        </a>
+        
+        <!-- Desktop Nav -->
+        <nav aria-label="Main navigation">
+          <ul class="nav-links" role="list">
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="about.html" id="nav-about">About Us</a></li>
+            <li><a href="portfolio.html" id="nav-works">Portfolio</a></li>
+            <li><a href="blogs.html" class="nav-active" id="nav-blogs">Blogs</a></li>
+            <li><a href="contact.html" id="nav-contact">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right side CTA -->
+        <div style="display:flex;align-items:center;gap:24px;">
+                    <a href="contact.html#map-section" id="nav-store" style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 0.815rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f0d080';" onmouseout="this.style.color='rgba(255,255,255,0.80)';">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #C9A84C;">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Store
+          </a>
+          <a href="contact.html" class="nav-cta" id="nav-cta-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Start a Project
+          </a>
+          <!-- Hamburger -->
+          <button id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+          </button>
+        </div>
+      </div>
+      <div id="nav-gold-line" aria-hidden="true"></div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+      <a href="blogs.html" class="mobile-nav-link">Blogs</a>
+      <a href="contact.html#map-section" class="mobile-nav-link" style="display: flex; align-items: center; gap: 10px; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #C9A84C;">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Store
+      </a>
+      <a href="contact.html" class="mobile-nav-link">Contact Us</a>
+      <a href="contact.html" class="nav-cta" style="margin-top:16px;">Start a Project</a>
+    </div>
+
+    <!-- Luxury Hero Section -->
+    <section class="relative overflow-hidden blogs-hero bg-[#F8F3EC]">
+      <div class="luxury-grid-overlay"></div>
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10 hero-reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(212,175,55,0.08)] border border-[rgba(212,175,55,0.22)] text-[#8F7226] text-xs font-semibold tracking-widest uppercase mb-6">
+          <span class="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-pulse"></span>
+          FURNCO INTERIORS JOURNAL
+        </div>
+        <h1 class="heading-luxury text-4xl md:text-6xl font-medium tracking-tight leading-tight mb-8">
+          Design Stories & <br class="hidden md:block"><span class="italic text-[#D4AF37]">Interior Insights</span>
+        </h1>
+        <p class="text-gray-700 font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          Explore luxury interiors, design inspiration, project journeys, and expert guidance from Furnco Interiors.
+        </p>
+        <div class="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-10"></div>
+      </div>
+    </section>
+
+    <!-- Main Blogs Body -->
+    <main class="max-w-7xl mx-auto px-6 lg:px-8 pb-32">
+
+
+      <!-- Featured Article Section -->
+      <section class="mb-24 anim-fade-up">
+        <div class="card-premium rounded-sm overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+          <div class="relative overflow-hidden h-[300px] lg:h-full min-h-[350px]">
+            <img src="images/hero-luxury.png" alt="Bespoke Living" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+            <div class="flex items-center gap-4 text-xs font-semibold tracking-wider text-[#D4AF37] uppercase mb-4">
+              <span>Luxury Interiors</span>
+              <span class="w-1 h-1 bg-[#D4AF37] rounded-full"></span>
+              <span class="text-gray-500 font-light">6 Min Read</span>
+            </div>
+            <h2 class="heading-luxury text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 leading-snug">
+              The Art of Bespoke Living: How Custom Furniture Defines Modern Luxury
+            </h2>
+            <p class="text-gray-700 font-light text-sm md:text-base leading-relaxed mb-8">
+              An in-depth look at how personalized craftsmanship, tailormade layouts, and premium materials elevate standard residential spaces into curated personal sanctuaries of distinction.
+            </p>
+            <div>
+              <a href="contact.html" class="btn-luxury-gold">Read Article &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Project Walkthroughs Video Showcase -->
+      <section class="mb-24 anim-fade-up">
+        <div class="text-center mb-12">
+          <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">EXCLUSIVE LOOKS</span>
+          <h2 class="heading-luxury text-3xl md:text-4xl font-semibold">Featured Project Walkthroughs</h2>
+          <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-4"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Video Card 1 -->
+          <div class="video-card-premium max-w-[220px] mx-auto rounded-sm overflow-hidden" data-video-url="images/project-video-1.mp4" data-title="The Prestige Residency Walkthrough">
+            <div class="aspect-[9/16] relative overflow-hidden bg-black">
+              <video src="images/project-video-1.mp4" class="w-full h-full object-cover" preload="metadata"></video>
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <div class="video-play-btn" aria-label="Play video">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 2px;"><polygon points="6,3 20,12 6,21" /></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">RESIDENTIAL TOUR</span>
+                <h3 class="heading-luxury text-white text-lg md:text-xl font-medium mt-1">The Prestige Residency — Living Space Tour</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Card 2 -->
+          <div class="video-card-premium max-w-[220px] mx-auto rounded-sm overflow-hidden" data-video-url="images/project-video-2.mp4" data-title="Serene Haven Villa Tour">
+            <div class="aspect-[9/16] relative overflow-hidden bg-black">
+              <video src="images/project-video-2.mp4" class="w-full h-full object-cover" preload="metadata"></video>
+              <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <div class="video-play-btn" aria-label="Play video">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 2px;"><polygon points="6,3 20,12 6,21" /></svg>
+                </div>
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 text-white z-10">
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">VILLA DESIGN</span>
+                <h3 class="heading-luxury text-white text-lg md:text-xl font-medium mt-1">Serene Haven Villa — Bed &amp; Dressing Suite Walkthrough</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Grid (8 premium blog cards) -->
+      <section class="mb-24">
+        <div class="text-center mb-12">
+          <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">JOURNAL ARTICLES</span>
+          <h2 class="heading-luxury text-3xl md:text-4xl font-semibold">Latest Insights</h2>
+          <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-4"></div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap justify-center gap-3 mb-16 anim-fade-up">
+          <button class="filter-btn active px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="all">All Stories</button>
+          <button class="filter-btn px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="luxury-interiors">Luxury Interiors</button>
+          <button class="filter-btn px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="living-room">Living Room Design</button>
+          <button class="filter-btn px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="kitchens">Modular Kitchens</button>
+          <button class="filter-btn px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="bedroom">Bedroom Interiors</button>
+          <button class="filter-btn px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="villa">Villa Design</button>
+          <button class="filter-btn px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="trends">Design Trends</button>
+          <button class="filter-btn px-6 py-2.5 rounded-full border border-gray-300 text-sm font-medium hover:border-[#0A0604]" data-category="stories">Project Stories</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
+          
+          <!-- Card 1 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="trends luxury-interiors">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/hero-slide2.png" alt="Luxury Trends" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Design Trends</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Top Luxury Interior Design Trends for 2026</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  Discover how biophilic integration, micro-cement finishes, and brass details are defining high-end properties this year.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="living-room luxury-interiors">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/walk-living.png" alt="Living Room Guide" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Living Room Design</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Modern Luxury Living Room Guide</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  Learn to balance spatial scale, ambient task lighting, and statement sofas to formulate a grand entertainment area.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="kitchens">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/walk-kitchen.png" alt="Kitchen Guide" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Modular Kitchens</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Complete Modular Kitchen Planning Guide</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  An essential breakdown of kitchen triangle layouts, dynamic smart pantry hardware, and stone worktop options.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="bedroom luxury-interiors">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/walk-bedroom.png" alt="Bedroom Design" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Bedroom Interiors</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Premium Bedroom Design Ideas</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  Upholstered wall panels, private vanity alcoves, and lighting automations designed to trigger ultimate relaxation.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="villa luxury-interiors">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/hero-slide3.png" alt="Villa Design" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Villa Design</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Villa Interior Design Essentials</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  Structuring transition hallways, coordinating indoor-outdoor continuity, and configuring custom double-height ceilings.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="trends">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/hero-slide4.png" alt="Smart Home" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Design Trends</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Smart Home Interior Integration</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  Seamlessly merging smart mirrors, hidden sound systems, motorized shades, and automated control interfaces without clutter.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="trends">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/gallery-big-1.jpg" alt="Design Mistakes" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Design Trends</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Common Interior Design Mistakes to Avoid</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  Understand critical errors like incorrect rug placement, over-cluttering accents, and ignoring general human scale patterns.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="stories">
+            <div class="relative overflow-hidden h-[240px]">
+              <img src="images/gallery-big-2.jpg" alt="Transformation" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Project Stories</span>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Behind the Scenes: Furnco Project Transformation</h3>
+                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
+                  An exclusive walkthrough showing mood-board iterations, material selection phases, and site execution challenges.
+                </p>
+              </div>
+              <div>
+                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Video + Blog Hybrid Layout: Video Showcase 2 -->
+      <section class="mb-24 anim-fade-up">
+        <div class="p-8 md:p-12 lg:p-16 rounded-sm bg-[#FAF5EE] border border-[rgba(212,175,55,0.2)]">
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+            <div class="lg:col-span-2">
+              <span class="text-[#D4AF37] text-xs font-bold tracking-[0.25em] uppercase block mb-3">STUDIO HIGHLIGHT</span>
+              <h2 class="heading-luxury text-3xl font-semibold mb-6">Crafting the Modern Workspace</h2>
+              <p class="text-gray-700 font-light text-sm md:text-base leading-relaxed mb-8">
+                Go inside our manufacturing headquarters and discover how our state-of-the-art precision tools, craftsmanship, and raw materials produce architectural distinction.
+              </p>
+              <div>
+                <a href="about.html" class="btn-luxury-ghost">Explore Studio &rarr;</a>
+              </div>
+            </div>
+            <div class="lg:col-span-3">
+              <div class="video-card-premium" data-video-url="images/hero-video.mp4" data-title="Furnco Manufacturing Excellence">
+                <div class="aspect-video relative overflow-hidden bg-black">
+                  <video src="images/hero-video.mp4" class="w-full h-full object-cover" preload="metadata"></video>
+                  <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <div class="video-play-btn" aria-label="Play video">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 2px;"><polygon points="6,3 20,12 6,21" /></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Studies Section (Interactive Before/After Comparison) -->
+      <section class="mb-24 anim-fade-up">
+        <div class="text-center mb-12">
+          <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">CASE STUDIES</span>
+          <h2 class="heading-luxury text-3xl md:text-4xl font-semibold">Transformative Case Studies</h2>
+          <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left: Before/After Slider Container -->
+          <div class="lg:col-span-7">
+            <span class="text-xs font-semibold text-gray-500 uppercase tracking-widest block mb-4">DRAG SLIDER LEFT &amp; RIGHT TO COMPARE</span>
+            <div class="comparison-slider-container" id="before-after-slider">
+              <!-- After Image -->
+              <img src="images/kiosk-after.png" alt="After Transformation" class="comparison-slider-img img-after" loading="lazy">
+              <!-- Before Image Wrapper -->
+              <div class="comparison-slider-resize" id="slider-resize">
+                <img src="images/kiosk-before.png" alt="Before Construction" class="comparison-slider-img img-before" loading="lazy">
+              </div>
+              <div class="comparison-slider-handle" id="slider-handle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 7l-5 5 5 5M16 17l5-5-5-5"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Process, Video and Client Experience details -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <span class="text-xs font-semibold text-[#D4AF37] uppercase tracking-wider block mb-1">PROJECT TRANSFORMATION</span>
+              <h3 class="heading-luxury text-2xl font-semibold">The Penthouse Foyer Showcase</h3>
+            </div>
+            
+            <div class="border-l-2 border-[#D4AF37] pl-4 py-1 space-y-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-700 block">The Challenge &amp; Solution</span>
+              <p class="text-xs md:text-sm text-gray-600 font-light leading-relaxed">
+                Transforming a cramped 120 sq ft entry vestibule into a grand, inviting luxury experience using customized fluted wall paneling, integrated floating console structures, and hidden linear illumination layout.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-700 block">Design Process</span>
+              <p class="text-xs md:text-sm text-gray-600 font-light leading-relaxed">
+                Drafted custom 3D renders matching the client's material preferences. Utilized premium marble textures combined with warm walnut veneers sourced directly from Italy.
+              </p>
+            </div>
+
+
+            <div class="bg-[#FAF5EE] p-5 rounded-sm border border-[rgba(212,175,55,0.1)]">
+              <svg width="24" height="24" fill="#D4AF37" viewBox="0 0 24 24" class="mb-2 opacity-60"><path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.944 2c-3.059 1.157-4.944 3.208-4.944 6h3.944v8h-10v-4.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.944 2c-3.059 1.157-4.944 3.208-4.944 6h3.944v8h-10v-4.275z"/></svg>
+              <p class="text-xs md:text-sm text-gray-700 italic leading-relaxed mb-2">
+                "The entryway transformation blew us away. Furnco managed to create a spacious luxury foyer in what was previously a very dark and tight corridor. Masterful execution!"
+              </p>
+              <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-widest block">— Mrs. Iyer, Prestige Penthouse</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Luxury CTA Section -->
+      <section class="mt-28 rounded-sm border border-[rgba(212,175,55,0.22)] text-[#0A0604] text-center relative overflow-hidden anim-fade-up" style="padding: 96px 24px; background-color: #FAF5EE !important; color: #0A0604 !important;">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#D4AF37] via-transparent to-transparent pointer-events-none"></div>
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+          <span class="text-[#8F7226] text-xs font-bold tracking-[0.3em] uppercase block">START YOUR JOURNEY</span>
+          <h2 class="heading-luxury text-3xl md:text-5xl font-semibold" style="color: #0A0604 !important; line-height: 1.35; margin-bottom: 16px;">Ready to Transform Your Space?</h2>
+          <p class="text-gray-700 font-light text-sm md:text-base max-w-md mx-auto" style="line-height: 1.6; margin-bottom: 24px;">
+            Let Furnco Interiors bring your dream space to life. Contact our consultant design studio today.
+          </p>
+          <div class="pt-4">
+            <a href="contact.html" class="btn-luxury-gold">Start Your Project &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0A0604] text-gray-300 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-6">
+                    <img src="images/logo-footer.png" alt="Furnco Interiors Logo" class="h-8" loading="lazy">
+                    <p class="font-light text-gray-400">We provide a full range of interior design and architectural design services focused on bespoke luxury.</p>
+                    <div class="flex gap-3 pt-2">
+                        <a href="https://www.facebook.com/profile.php?id=100086378983218&ref=NONE_xav_ig_profile_page_web#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all" aria-label="Facebook">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/furnco.india/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all" aria-label="Instagram">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-serif text-xl mb-6">Quick Links</h4>
+                    <ul class="space-y-3 font-light">
+                        <li><a href="about.html" class="hover:text-[#D4AF37] transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#D4AF37] transition-colors">Portfolio</a></li>
+                        <li><a href="blogs.html" class="hover:text-[#D4AF37] transition-colors">Blogs</a></li>
+                        <li><a href="contact.html" class="hover:text-[#D4AF37] transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-serif text-xl mb-6">Contact</h4>
+                    <ul class="space-y-4 font-light text-sm">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 text-[#D4AF37] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span>4JCQ+846, Pal Rd, Srinivasa Nagar, Bengaluru, Sathanur, Karnataka 560064</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-[#D4AF37] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            <a href="mailto:support@furncointeriors.com" class="hover:text-[#D4AF37] transition-colors">support@furncointeriors.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-[#D4AF37] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                            <span>(+91) 96209 74224</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-serif text-xl mb-6">Latest Projects</h4>
+                    <ul class="space-y-3 font-light">
+                        <li><a href="portfolio.html" class="hover:text-[#D4AF37] transition-colors">Stylish Family Appartment</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#D4AF37] transition-colors">Modern Villa</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#D4AF37] transition-colors">Farm House</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-light">
+                <p>&copy; 2026 Furnco Interiors. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Lightbox Modal Container -->
+    <div class="video-modal" id="video-lightbox">
+      <div class="video-modal-content">
+        <button class="video-modal-close" id="close-lightbox" aria-label="Close video player">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          Close
+        </button>
+        <video id="modal-video-element" controls class="w-full h-full rounded-sm" autoplay muted></video>
+      </div>
+    </div>
+
+    <!-- GSAP CDN scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+    (function(){
+      'use strict';
+
+      // ── 1. Mobile Menu Toggle ──
+      var burger = document.getElementById('nav-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var closeBtn = document.getElementById('mobile-nav-close');
+
+      function openMenu(){
+        mobileMenu.style.display = 'flex';
+        requestAnimationFrame(function(){
+          mobileMenu.classList.add('is-open');
+        });
+        burger.classList.add('is-open');
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu(){
+        mobileMenu.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        setTimeout(function(){ mobileMenu.style.display = 'none'; }, 400);
+      }
+      if(burger) burger.addEventListener('click', function(){
+        mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+      if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+
+      // ── 2. Interactive Video Lightbox modal ──
+      var lightbox = document.getElementById('video-lightbox');
+      var modalVideo = document.getElementById('modal-video-element');
+      var closeLightbox = document.getElementById('close-lightbox');
+      var videoCards = document.querySelectorAll('.video-card-premium');
+
+      videoCards.forEach(function(card){
+        card.addEventListener('click', function(){
+          var videoUrl = card.getAttribute('data-video-url');
+          if (videoUrl) {
+            modalVideo.src = videoUrl;
+            modalVideo.load();
+            lightbox.classList.add('active');
+            modalVideo.play().catch(function(e) {
+              console.log('Autoplay blocked. User gesture registered, playing on mute state check.');
+            });
+          }
+        });
+      });
+
+      function stopVideo() {
+        lightbox.classList.remove('active');
+        modalVideo.pause();
+        modalVideo.src = "";
+      }
+
+      if(closeLightbox) closeLightbox.addEventListener('click', stopVideo);
+      lightbox.addEventListener('click', function(e){
+        if (e.target === lightbox) stopVideo();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') stopVideo();
+      });
+
+
+      // ── 3. Category filtering logic ──
+      var filterButtons = document.querySelectorAll('.filter-btn');
+      var blogCards = document.querySelectorAll('#blog-grid > div');
+
+      filterButtons.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          // Update active states
+          filterButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          var cat = btn.getAttribute('data-category');
+
+          blogCards.forEach(function(card){
+            if (cat === 'all') {
+              card.style.display = 'flex';
+            } else {
+              var cardCats = card.getAttribute('data-categories') || '';
+              if (cardCats.includes(cat) || (cat === 'luxury-interiors' && cardCats.includes('luxury'))) {
+                card.style.display = 'flex';
+              } else {
+                card.style.display = 'none';
+              }
+            }
+          });
+          
+          // Trigger scrollTrigger refresh since heights changed
+          // Trigger scrollTrigger refresh since heights changed
+          if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+          }
+        });
+      });
+
+
+      // ── 4. Interactive Before/After Image Comparison Slider ──
+      var sliderContainer = document.getElementById('before-after-slider');
+      var sliderResize = document.getElementById('slider-resize');
+      var sliderHandle = document.getElementById('slider-handle');
+
+      if (sliderContainer && sliderResize && sliderHandle) {
+        function moveSlider(clientX) {
+          var rect = sliderContainer.getBoundingClientRect();
+          var x = clientX - rect.left;
+          var percentage = (x / rect.width) * 100;
+          
+          if (percentage < 0) percentage = 0;
+          if (percentage > 100) percentage = 100;
+          
+          sliderResize.style.width = percentage + '%';
+          sliderHandle.style.left = percentage + '%';
+        }
+
+        // Mouse Drag / Move
+        sliderContainer.addEventListener('mousemove', function(e){
+          moveSlider(e.clientX);
+        });
+
+        // Touch Drag / Move (Mobile support)
+        sliderContainer.addEventListener('touchmove', function(e){
+          if (e.touches && e.touches[0]) {
+            moveSlider(e.touches[0].clientX);
+          }
+        }, { passive: true });
+      }
+
+
+      // ── 5. GSAP Scroll Trigger Entrance Animations ──
+      if (typeof gsap !== 'undefined') {
+        if (typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+        }
+
+        // Hero animations
+        gsap.fromTo('.hero-reveal', 
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1.2, ease: "power4.out", delay: 0.1 }
+        );
+
+        // Card / section reveals
+        if (typeof ScrollTrigger !== 'undefined') {
+          document.querySelectorAll('.anim-fade-up').forEach(function(el){
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              duration: 1.0,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none none"
+              }
+            });
+          });
+        } else {
+          // Fallback if ScrollTrigger is not loaded
+          document.querySelectorAll('.anim-fade-up').forEach(function(el){
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          });
+        }
+      } else {
+        // Fallback if GSAP is not loaded
+        document.querySelectorAll('.anim-fade-up').forEach(function(el){
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        document.querySelectorAll('.hero-reveal').forEach(function(el){
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+
+    })();
+    </script>
+</body>
+</html>

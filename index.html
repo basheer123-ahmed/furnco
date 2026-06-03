@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Furnco Interiors | High-end Interior Design</title>
+    <meta name="description" content="Furnco Interiors provides a full range of high-end interior and architectural design services.">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/style.css?v=2" />
+    <!-- Global Animations JS -->
+    <script src="assets/js/main.js" defer></script>
+    <!-- Floating Contact Buttons (Call & WhatsApp) -->
+    <script src="assets/js/floating-contact.js" defer></script>
+</head>
+
+<body class="bg-background text-primary font-sans antialiased selection:bg-secondary selection:text-white">
+    <!-- ============================================================
+         PREMIUM NAVBAR — Furnco Interiors
+         Transparent over hero → Frosted glass on scroll
+    ============================================================ -->
+    <style>
+      /* ── Base navbar ─────────────────────────────────────── */
+      #site-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        transition: background 0.5s ease, box-shadow 0.5s ease, padding 0.4s ease;
+        padding: 0;
+      }
+
+      /* Transparent state (at top of page / over hero) */
+      #site-header.nav-top {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      /* Scrolled state — frosted glass */
+      #site-header.nav-scrolled {
+        background: rgba(10, 6, 4, 0.80);
+        backdrop-filter: blur(20px) saturate(1.6);
+        -webkit-backdrop-filter: blur(20px) saturate(1.6);
+        box-shadow: 0 1px 0 rgba(201,168,76,0.15), 0 8px 32px rgba(0,0,0,0.35);
+      }
+
+      /* ── Inner layout ────────────────────────────────────── */
+      .nav-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 76px;
+        transition: height 0.4s ease;
+      }
+      #site-header.nav-scrolled .nav-inner {
+        height: 64px;
+      }
+
+      /* ── Logo area ───────────────────────────────────────── */
+      .nav-logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .nav-logo-wrap img {
+        height: 36px;
+        width: auto;
+        /* Invert logo to white when nav is transparent */
+        filter: brightness(0) invert(1);
+        transition: filter 0.4s ease, height 0.4s ease;
+      }
+      #site-header.nav-scrolled .nav-logo-wrap img {
+        filter: brightness(0) invert(1);
+        height: 32px;
+      }
+
+      /* ── Gold separator dot ──────────────────────────────── */
+      .nav-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(201,168,76,0.7);
+        flex-shrink: 0;
+      }
+
+      /* ── Desktop nav links ───────────────────────────────── */
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        list-style: none;
+        margin: 0; padding: 0;
+      }
+      .nav-links a {
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.815rem;
+        font-weight: 500;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.80);
+        text-decoration: none;
+        padding-bottom: 4px;
+        transition: color 0.3s ease;
+      }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px; left: 0;
+        width: 0; height: 1.5px;
+        background: linear-gradient(90deg, #c9a84c, #f5d78e);
+        border-radius: 2px;
+        transition: width 0.35s cubic-bezier(.22,1,.36,1);
+      }
+      .nav-links a:hover,
+      .nav-links a.nav-active {
+        color: #f0d080;
+      }
+      .nav-links a:hover::after,
+      .nav-links a.nav-active::after {
+        width: 100%;
+      }
+
+      /* ── CTA button ──────────────────────────────────────── */
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 26px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.775rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #1a0d00;
+        background: linear-gradient(135deg, #c9a84c 0%, #f5d78e 50%, #c9a84c 100%);
+        background-size: 200% auto;
+        border-radius: 2px;
+        border: none;
+        transition: all 0.4s cubic-bezier(.22,1,.36,1);
+        box-shadow: 0 4px 16px rgba(201,168,76,0.30);
+        position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .nav-cta::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
+        transform: translateX(-100%);
+        transition: transform 0.55s ease;
+      }
+      .nav-cta:hover {
+        background-position: right center;
+        box-shadow: 0 6px 24px rgba(201,168,76,0.50);
+        transform: translateY(-1px);
+        color: #1a0d00;
+      }
+      .nav-cta:hover::before { transform: translateX(100%); }
+
+      /* ── Mobile hamburger ────────────────────────────────── */
+      #nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(255,255,255,0.22);
+        border-radius: 4px;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        transition: border-color 0.3s;
+      }
+      #nav-hamburger:hover { border-color: rgba(201,168,76,0.6); }
+      .ham-line {
+        width: 20px;
+        height: 1.5px;
+        background: rgba(255,255,255,0.85);
+        border-radius: 2px;
+        transition: all 0.35s cubic-bezier(.22,1,.36,1);
+        transform-origin: center;
+      }
+      #nav-hamburger.is-open .ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      #nav-hamburger.is-open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      #nav-hamburger.is-open .ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+      /* ── Mobile dropdown ─────────────────────────────────── */
+      #mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 99;
+        background: rgba(10,6,4,0.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        pointer-events: none;
+      }
+      #mobile-menu.is-open {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+      .mobile-nav-link {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: rgba(255,255,255,0.85);
+        text-decoration: none;
+        transition: color 0.3s;
+        letter-spacing: 0.04em;
+      }
+      .mobile-nav-link:hover { color: #f0d080; }
+      .mobile-nav-close {
+        position: absolute;
+        top: 24px; right: 24px;
+        width: 44px; height: 44px;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 50%;
+        background: transparent;
+        color: white;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s;
+      }
+      .mobile-nav-close:hover { border-color: #c9a84c; color: #c9a84c; }
+
+      /* ── Gold thin line below navbar (only when scrolled) ── */
+      #nav-gold-line {
+        position: absolute;
+        bottom: 0; left: 0;
+        height: 1px;
+        width: 0%;
+        background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+        transition: width 0.6s ease;
+      }
+      #site-header.nav-scrolled #nav-gold-line { width: 100%; }
+
+      /* ── Responsive ──────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .nav-links, .nav-cta { display: none !important; }
+        #nav-hamburger { display: flex; }
+      }
+    </style>
+
+    <!-- Header -->
+    <header id="site-header" class="nav-top">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo-wrap" aria-label="Furnco Interiors home">
+          <img src="images/logo.png" alt="Furnco Interiors logo" id="nav-logo-img">
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav aria-label="Main navigation">
+          <ul class="nav-links" role="list">
+            <li><a href="index.html" class="nav-active" id="nav-home">Home</a></li>
+            <li><a href="about.html" id="nav-about">About Us</a></li>
+            <li><a href="portfolio.html" id="nav-works">Portfolio</a></li>
+            <li><a href="blogs.html" id="nav-blogs">Blogs</a></li>
+            <li><a href="contact.html" id="nav-contact">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right side: CTA + hamburger -->
+        <div style="display:flex;align-items:center;gap:24px;">
+                    <a href="contact.html#map-section" id="nav-store" style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 0.815rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f0d080';" onmouseout="this.style.color='rgba(255,255,255,0.80)';">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #C9A84C;">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Store
+          </a>
+          <a href="contact.html" class="nav-cta" id="nav-cta-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Start a Project
+          </a>
+          <!-- Hamburger (mobile) -->
+          <button id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+          </button>
+        </div>
+
+      </div>
+      <!-- Animated gold underline (appears on scroll) -->
+      <div id="nav-gold-line" aria-hidden="true"></div>
+    </header>
+
+    <!-- Full-screen mobile menu overlay -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+      <a href="blogs.html" class="mobile-nav-link">Blogs</a>
+      <a href="contact.html#map-section" class="mobile-nav-link" style="display: flex; align-items: center; gap: 10px; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #C9A84C;">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Store
+      </a>
+      <a href="contact.html" class="mobile-nav-link">Contact Us</a>
+      <a href="contact.html" class="nav-cta" style="margin-top:16px;">Start a Project</a>
+    </div>
+
+    <!-- Navbar JS -->
+    <script>
+    (function(){
+      var header   = document.getElementById('site-header');
+      var burger   = document.getElementById('nav-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var closeBtn = document.getElementById('mobile-nav-close');
+
+      /* ── Scroll behaviour ── */
+      function onScroll(){
+        if(window.scrollY > 60){
+          header.classList.remove('nav-top');
+          header.classList.add('nav-scrolled');
+        } else {
+          header.classList.remove('nav-scrolled');
+          header.classList.add('nav-top');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load
+
+      /* ── Mobile menu toggle ── */
+      function openMenu(){
+        mobileMenu.style.display = 'flex';
+        requestAnimationFrame(function(){
+          mobileMenu.classList.add('is-open');
+        });
+        burger.classList.add('is-open');
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu(){
+        mobileMenu.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        setTimeout(function(){ mobileMenu.style.display = 'none'; }, 400);
+      }
+
+      if(burger) burger.addEventListener('click', function(){
+        mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+      if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+      /* Close mobile menu on Escape */
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') closeMenu();
+      });
+    })();
+    </script>
+
+    <!-- ============================================================
+         CINEMATIC HERO SECTION — Furnco Interiors
+         4-Slide Auto-Sliding Carousel | Apple-level smoothness
+    ============================================================ -->
+    <style>
+      /* ── Hero Canvas ─────────────────────────────────────── */
+      #furnco-hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 680px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      /* ── Walkthrough Crossfade Stack ─────────────────────── */
+      #hero-slider-track {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      /* ── Each Scene: stacked, crossfade in/out ────────────── */
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hero-slide.is-active {
+        opacity: 1;
+      }
+      .hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        transform: scale(1.0);
+        transition: transform 10s ease-out;
+      }
+      .hero-slide.is-active img {
+        transform: scale(1.08) translateX(-14px) translateY(-4px);
+      }
+
+      /* ── Slide label chip (bottom-right) ─────────────────── */
+      .slide-label {
+        position: absolute;
+        bottom: 90px;
+        right: 6%;
+        z-index: 15;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        pointer-events: none;
+      }
+      .slide-label::before {
+        content: '';
+        width: 28px;
+        height: 1px;
+        background: rgba(201,168,76,0.7);
+      }
+
+      /* ── Progress bar (top) ──────────────────────────────── */
+      #hero-progress-bar {
+        position: absolute;
+        top: 0; left: 0;
+        height: 3px;
+        width: 0%;
+        z-index: 20;
+        background: linear-gradient(90deg, #c9a84c, #f5d78e);
+        transition: width 0.1s linear;
+        border-radius: 0 2px 2px 0;
+      }
+
+      /* ── Dot navigation ──────────────────────────────────── */
+      #hero-dots {
+        position: absolute;
+        bottom: 38px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .hero-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.35);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        border: none;
+        padding: 0;
+      }
+      .hero-dot.is-active {
+        background: #c9a84c;
+        width: 24px;
+        border-radius: 3px;
+      }
+
+      /* ── Arrow controls ──────────────────────────────────── */
+      .hero-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 20;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(0,0,0,0.25);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+      }
+      .hero-arrow:hover {
+        background: rgba(201,168,76,0.75);
+        border-color: #c9a84c;
+        transform: translateY(-50%) scale(1.08);
+      }
+      #hero-prev { left: 28px; }
+      #hero-next { right: 28px; }
+
+      /* ── Slide counter (top-right) ───────────────────────── */
+      #hero-counter {
+        position: absolute;
+        top: 100px;
+        right: 36px;
+        z-index: 20;
+        font-family: 'Playfair Display', serif;
+        color: rgba(255,255,255,0.40);
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        pointer-events: none;
+      }
+      #hero-counter span { color: rgba(201,168,76,0.85); font-size: 1.6rem; font-weight: 700; }
+
+      @keyframes heroZoom {
+        from { transform: scale(1.00) translateX(0px); }
+        to   { transform: scale(1.08) translateX(-18px); }
+      }
+
+      /* ── Multi-layer Dark Gradient Overlay ───────────────── */
+      #hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          /* Light left mask for text readability */
+          linear-gradient(105deg,
+            rgba(10,6,4,0.65)  0%,
+            rgba(10,6,4,0.40) 32%,
+            rgba(10,6,4,0.15) 58%,
+            transparent       80%,
+            transparent       100%
+          ),
+          /* Very subtle top & bottom vignette */
+          linear-gradient(to bottom,
+            rgba(0,0,0,0.15) 0%,
+            transparent      18%,
+            transparent      85%,
+            rgba(0,0,0,0.25) 100%
+          );
+      }
+
+      /* Rays, dust, curtain removed — images kept clean */
+
+      /* Curtain veil removed */
+
+      /* ── Gold Accent Line ────────────────────────────────── */
+      .hero-gold-line {
+        display: inline-block;
+        width: 48px;
+        height: 2px;
+        background: linear-gradient(90deg, #c9a84c, #f5d78e);
+        border-radius: 2px;
+        vertical-align: middle;
+        margin-right: 12px;
+        animation: lineGrow 1.2s 0.3s cubic-bezier(.22,1,.36,1) both;
+      }
+      @keyframes lineGrow {
+        from { transform: scaleX(0); opacity:0; }
+        to   { transform: scaleX(1); opacity:1; }
+      }
+
+      /* ── Text entrance animations ────────────────────────── */
+      .hero-reveal {
+        opacity: 0;
+        transform: translateY(36px);
+        animation: heroReveal 1.1s cubic-bezier(.22,1,.36,1) forwards;
+      }
+      @keyframes heroReveal {
+        to { opacity:1; transform:translateY(0); }
+      }
+
+      /* ── Stat counters ───────────────────────────────────── */
+      .hero-stat-block {
+        position: relative;
+        padding-left: 18px;
+      }
+      .hero-stat-block::before {
+        content:'';
+        position:absolute;
+        left:0; top:50%;
+        transform:translateY(-50%);
+        width:2px; height:60%;
+        background: linear-gradient(to bottom, #c9a84c, transparent);
+        border-radius:2px;
+      }
+
+      /* ── CTA buttons ─────────────────────────────────────── */
+      .hero-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 36px;
+        border-radius: 3px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(.22,1,.36,1);
+        background: linear-gradient(135deg, #c9a84c 0%, #f5d78e 50%, #c9a84c 100%);
+        background-size: 200% auto;
+        color: #1a0d00;
+        border: none;
+        box-shadow: 0 8px 32px rgba(201,168,76,0.35), 0 2px 8px rgba(0,0,0,0.3);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-btn-primary::before {
+        content:'';
+        position:absolute;
+        inset:0;
+        background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+      }
+      .hero-btn-primary:hover { background-position: right center; box-shadow: 0 12px 40px rgba(201,168,76,0.55), 0 4px 12px rgba(0,0,0,0.4); transform: translateY(-2px); }
+      .hero-btn-primary:hover::before { transform: translateX(100%); }
+
+      .hero-btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 36px;
+        border-radius: 3px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(.22,1,.36,1);
+        background: transparent;
+        color: rgba(255,255,255,0.92);
+        border: 1px solid rgba(255,255,255,0.38);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+      }
+      .hero-btn-ghost:hover {
+        background: rgba(255,255,255,0.10);
+        border-color: rgba(255,255,255,0.70);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      }
+
+      /* ── Scroll indicator ────────────────────────────────── */
+      .hero-scroll-hint {
+        position:absolute;
+        bottom:36px; left:50%;
+        transform:translateX(-50%);
+        z-index:10;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:8px;
+        opacity:0;
+        animation: fadeIn 1s 3.5s ease forwards;
+      }
+      .hero-scroll-hint span {
+        font-size:0.65rem;
+        letter-spacing:0.22em;
+        text-transform:uppercase;
+        color:rgba(255,255,255,0.5);
+        font-family:'Inter',sans-serif;
+      }
+      .scroll-mouse {
+        width:22px; height:36px;
+        border:1.5px solid rgba(255,255,255,0.35);
+        border-radius:12px;
+        display:flex;
+        align-items:flex-start;
+        justify-content:center;
+        padding-top:6px;
+      }
+      .scroll-dot {
+        width:4px; height:8px;
+        border-radius:2px;
+        background:rgba(201,168,76,0.8);
+        animation:scrollDot 2s ease-in-out infinite;
+      }
+      @keyframes scrollDot {
+        0%,100%{ transform:translateY(0); opacity:1; }
+        80%    { transform:translateY(10px); opacity:0; }
+      }
+      @keyframes fadeIn {
+        to { opacity:1; }
+      }
+
+      /* ── Content pinned to bottom ────────────────────────── */
+      #hero-content-wrap {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        padding: 0 0 56px 0;
+        background: linear-gradient(to top,
+          rgba(0,0,0,0.50) 0%,
+          rgba(0,0,0,0.20) 45%,
+          transparent 100%
+        );
+      }
+
+      /* ── Responsive ──────────────────────────────────────── */
+      @media (max-width: 768px) {
+        .ray { display: none; }
+        #hero-curtain { width: 100%; }
+        #furnco-hero { min-height: 100svh; }
+      }
+    </style>
+
+    <!-- Hero Section -->
+    <main>
+        <section id="furnco-hero" aria-label="Hero — Furnco Luxury Interiors">
+
+          <!-- Full-screen looping video background -->
+          <video
+            id="hero-video"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+            style="
+              position:absolute;
+              inset:0;
+              width:100%;
+              height:100%;
+              object-fit:cover;
+              object-position:center center;
+              z-index:0;
+              will-change:transform;
+              filter: brightness(1.25) contrast(1.05) saturate(1.10);
+            "
+          >
+            <source src="images/hero-video.mp4" type="video/mp4">
+          </video>
+
+
+          <!-- Dark gradient overlay for text readability -->
+          <div id="hero-overlay" aria-hidden="true"></div>
+
+          <!-- Hero content — bottom left -->
+          <div id="hero-content-wrap">
+            <div style="max-width:1280px;margin:0 auto;padding:0 48px;width:100%;">
+              <div style="max-width:480px;">
+
+                <!-- Small label -->
+                <div class="hero-reveal" style="animation-delay:0.10s;margin-bottom:16px;">
+                  <span style="font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.50);font-family:'Inter',sans-serif;font-weight:400;">Premium Interior Design</span>
+                </div>
+
+                <!-- Headline with gold accent -->
+                <h1 class="hero-reveal" style="animation-delay:0.25s;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.8vw,3.2rem);font-weight:700;line-height:1.18;color:#ffffff;margin-bottom:14px;text-shadow:0 2px 16px rgba(0,0,0,0.5);">
+                  Spaces That<br>
+                  Speak <em style="color:#c9a84c;font-style:normal;">Luxury</em>
+                </h1>
+
+                <!-- Subtext -->
+                <p class="hero-reveal" style="animation-delay:0.38s;font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:300;line-height:1.65;color:rgba(255,255,255,0.55);margin-bottom:26px;max-width:360px;">
+                  Crafting timeless interiors that blend elegance, functionality and modern living.
+                </p>
+
+                <!-- Buttons -->
+                <div class="hero-reveal" style="animation-delay:0.50s;display:flex;flex-wrap:wrap;gap:10px;">
+                  <a href="portfolio.html" class="hero-btn-primary" id="hero-cta-projects" style="font-size:0.72rem;padding:11px 22px;letter-spacing:0.08em;font-weight:500;">
+                    Explore Projects &rarr;
+                  </a>
+                  <a href="contact.html" class="hero-btn-ghost" id="hero-cta-contact" style="font-size:0.72rem;padding:11px 22px;letter-spacing:0.08em;">
+                    Book Consultation
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Scroll hint -->
+          <div class="hero-scroll-hint" aria-hidden="true">
+            <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+            <span>Scroll</span>
+          </div>
+
+        </section>
+
+        <!-- Hero JS: Count-up + Parallax -->
+        <script>
+        (function(){
+          var heroEl = document.getElementById('furnco-hero');
+
+          /* Video: play only first 8 seconds, then loop back to start */
+          var vid = document.getElementById('hero-video');
+          if(vid){
+            vid.loop = false; /* disable native loop — we handle it */
+            vid.playbackRate = 0.6;
+            vid.play().catch(function(){});
+
+            /* Restart at 0 when reaching 8 seconds */
+            vid.addEventListener('timeupdate', function(){
+              if(vid.currentTime >= 8){
+                vid.currentTime = 0;
+                vid.play().catch(function(){});
+              }
+            });
+
+            /* Also catch native 'ended' just in case */
+            vid.addEventListener('ended', function(){
+              vid.currentTime = 0;
+              vid.play().catch(function(){});
+            });
+          }
+
+          /* Mouse parallax on content only */
+          heroEl.addEventListener('mousemove', function(e){
+            var rect = heroEl.getBoundingClientRect();
+            var nx   = (e.clientX - rect.left) / rect.width  - 0.5;
+            var ny   = (e.clientY - rect.top)  / rect.height - 0.5;
+            var content = document.getElementById('hero-content-wrap');
+            if(content) content.style.transform = 'translate(' + (nx * 6) + 'px,' + (ny * 4) + 'px)';
+          });
+          heroEl.addEventListener('mouseleave', function(){
+            var content = document.getElementById('hero-content-wrap');
+            if(content) content.style.transform = '';
+          });
+
+          /* Count-up stats */
+          function animateCountUp(el){
+            var target = parseInt(el.dataset.target, 10);
+            var dur    = 1800;
+            var start  = performance.now();
+            function step(now){
+              var t = Math.min((now - start) / dur, 1);
+              var ease = 1 - Math.pow(1 - t, 3);
+              el.textContent = Math.round(ease * target);
+              if(t < 1) requestAnimationFrame(step);
+              else el.textContent = target;
+            }
+            requestAnimationFrame(step);
+          }
+          var observed = false;
+          var statsEls = document.querySelectorAll('.count-up');
+          if('IntersectionObserver' in window){
+            var io = new IntersectionObserver(function(entries){
+              if(entries[0].isIntersecting && !observed){
+                observed = true;
+                statsEls.forEach(function(el){ animateCountUp(el); });
+              }
+            }, { threshold: 0.4 });
+            io.observe(heroEl);
+          } else {
+            statsEls.forEach(function(el){ animateCountUp(el); });
+          }
+        })();
+        </script>
+
+
+        <!-- ============================================================
+             NEW LUXURY SECTIONS
+        ============================================================ -->
+        <style>
+          /* Global & Animations */
+          body, body.bg-background { background-color: #F5EBE1; color: #1A1A1A; overflow-x: hidden; }
+          .bg-surface { background-color: #F5EBE1; }
+          .bg-primary { background-color: #0F0F0F; }
+          .text-primary { color: #0F0F0F; }
+          .text-gold { color: #D4AF37; }
+          .bg-gold { background-color: #D4AF37; }
+          
+          /* Bug Fixes */
+          #projects h2, #projects h3, .cta-section h2 { color: #ffffff !important; }
+          #projects svg { width: 1.25rem !important; height: 1.25rem !important; flex-shrink: 0; }
+          .text-white { color: #ffffff !important; }
+          
+          /* GSAP style reveals (will be handled by Intersection Observer) */
+          .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .delay-100 { transition-delay: 100ms; }
+          .delay-200 { transition-delay: 200ms; }
+          .delay-300 { transition-delay: 300ms; }
+
+          /* Custom styling for sections */
+          .section-title {
+             font-family: 'Playfair Display', serif;
+             font-size: clamp(2.5rem, 4vw, 3.5rem);
+             font-weight: 700;
+             letter-spacing: -0.02em;
+             margin-bottom: 3rem;
+          }
+          .section-subtitle {
+             font-family: 'Inter', sans-serif;
+             text-transform: uppercase;
+             letter-spacing: 0.2em;
+             font-size: 0.75rem;
+             color: #D4AF37;
+             margin-bottom: 1rem;
+             display: block;
+          }
+
+          /* 1. Why Choose Us Cards */
+          .benefit-card {
+            position: relative;
+            background: #ffffff;
+            padding: 3rem 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            z-index: 1;
+          }
+          .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4AF37, #FFF2B2, #AA8222);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+          }
+          .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.4);
+          }
+          .benefit-card:hover::before {
+            transform: scaleX(1);
+          }
+          .benefit-icon {
+            color: #D4AF37;
+            width: 4rem !important;
+            height: 4rem !important;
+            margin-bottom: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0) 100%);
+            padding: 0.8rem;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+          }
+          .benefit-card:hover .benefit-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.05) 100%);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+          }
+          .benefit-card h3 {
+             position: relative;
+             z-index: 2;
+          }
+          .benefit-card p {
+             position: relative;
+             z-index: 2;
+          }
+
+          /* 2. Room Collections Cards */
+          .room-card {
+            position: relative;
+            display: block;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            height: 480px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: #fff;
+          }
+          .room-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+          }
+          .rc-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+          }
+          .room-card:hover .rc-img {
+            transform: scale(1.05);
+          }
+          .rc-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+            transition: opacity 0.4s ease;
+          }
+          .room-card:hover .rc-overlay {
+            opacity: 0.95;
+          }
+          .rc-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            z-index: 2;
+          }
+          .rc-title {
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            transition: transform 0.4s ease;
+          }
+          .room-card:hover .rc-title {
+            transform: translateY(-4px);
+          }
+          .rc-link {
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
+            transition: all 0.4s ease;
+          }
+          .room-card:hover .rc-link {
+            color: #D4AF37;
+            letter-spacing: 0.15em;
+          }
+          .rc-ribbon {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 70px;
+            height: 70px;
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+          }
+          
+          /* Title Ribbons */
+          .title-with-ribbons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            overflow: hidden;
+            width: 100%;
+          }
+          .title-ribbon {
+            flex: 1;
+            max-width: 250px;
+            display: flex;
+            align-items: center;
+            min-width: 100px;
+          }
+          .title-ribbon svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+          }
+          .title-ribbon-left {
+            justify-content: flex-end;
+          }
+          .title-ribbon-right {
+            justify-content: flex-start;
+          }
+          .title-with-ribbons h2 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 700;
+            color: #1A1A1A;
+            white-space: nowrap;
+            letter-spacing: -0.01em;
+          }
+          .text-maroon {
+            color: #5a1834;
+          }
+          
+          @media (max-width: 768px) {
+            .title-ribbon { display: none; }
+          }
+
+          /* 3. Featured Projects */
+          .project-card {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+          }
+          .project-card:nth-child(even) {
+            grid-template-columns: 1fr 1.5fr;
+          }
+          .quote-mark {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: #f0ebe1;
+            line-height: 1;
+            z-index: 0;
+          }
+
+          /* CTA Section */
+          .cta-section {
+            position: relative;
+            background: #2b2b2b;
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+            overflow: hidden;
+          }
+          .cta-bg {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(15, 15, 15, 0.8), rgba(15, 15, 15, 0.5)), url('images/slider/slider1-home1-1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+          }
+          .cta-content {
+            position: relative;
+            z-index: 10;
+          }
+
+          /* Footer Modern */
+          .footer-modern {
+             background: #0F0F0F;
+             color: #888;
+             padding: 5rem 0 2rem;
+          }
+          .footer-modern a { color: #888; transition: color 0.3s; }
+          .footer-modern a:hover { color: #D4AF37; }
+          .footer-modern h5 {
+             color: #fff;
+             font-family: 'Inter', sans-serif;
+             text-transform: uppercase;
+             letter-spacing: 0.15em;
+             font-size: 0.8rem;
+             margin-bottom: 1.5rem;
+          }
+
+          /* Before / After Slider */
+          .ba-slider-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            background: #e0e0e0;
+          }
+          .ba-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+          }
+          .ba-img-before {
+            z-index: 1;
+          }
+          .ba-img-after {
+            z-index: 2;
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+          }
+          .ba-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            opacity: 0;
+            cursor: ew-resize;
+            margin: 0;
+          }
+          .ba-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #ffffff;
+            z-index: 4;
+            transform: translateX(-50%);
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+          }
+          .ba-handle-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+          }
+          .ba-handle-btn svg { width: 20px; height: 20px; }
+          .ba-label {
+            position: absolute;
+            top: 24px;
+            padding: 8px 20px;
+            background: rgba(50,50,50,0.8);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            z-index: 3;
+          }
+          .ba-label-before {
+            left: 24px;
+          }
+          .ba-label-after {
+            right: 24px;
+          }
+
+          /* Premium Awards Ticker Styles */
+          .awards-ticker-section {
+              background-color: #F5EBE1; /* Luxury light skin background */
+              color: #1A1A1A;            /* Luxury Dark text */
+              padding: 1.5rem 0;         /* Vertical padding */
+              overflow: hidden;
+              position: relative;
+              border-top: 1px solid rgba(26, 26, 26, 0.08);
+              border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+          }
+          .awards-ticker-wrapper {
+              overflow: hidden;
+              white-space: nowrap;
+              display: flex;
+              align-items: center;
+              width: 100%;
+          }
+          .awards-ticker-content {
+              display: flex;
+              align-items: center;
+              gap: 4rem;
+              animation: awards-marquee 30s linear infinite;
+              font-family: 'Playfair Display', serif;
+              font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+              font-weight: 500;
+              font-style: italic;
+              letter-spacing: 0.02em;
+          }
+          .awards-ticker-star {
+              color: #C8A96B;            /* Gold accent star */
+              font-size: 0.9em;
+              margin: 0 1rem;
+          }
+          .awards-ticker-content span {
+              transition: color 0.3s ease;
+          }
+          .awards-ticker-content span:hover {
+              color: #C8A96B;            /* Gold hover effect */
+              cursor: default;
+          }
+          .awards-ticker-section:hover .awards-ticker-content {
+              animation-play-state: paused;
+          }
+
+          @keyframes awards-marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+          }
+        </style>
+
+        <!-- AWARDS & RECOGNITION TICKER -->
+        <section class="awards-ticker-section">
+            <div class="awards-ticker-wrapper">
+                <div class="awards-ticker-content">
+                    <span>National Award For Architecture & Design Excellence</span>
+                    <span class="awards-ticker-star">✦</span>
+                    <span>Gold A Interior Design Rating</span>
+                    <span class="awards-ticker-star">✦</span>
+                    <span>Dynamic Business Company Award</span>
+                    <span class="awards-ticker-star">✦</span>
+                    <!-- Duplicate for infinite loop -->
+                    <span>National Award For Architecture & Design Excellence</span>
+                    <span class="awards-ticker-star">✦</span>
+                    <span>Gold A Interior Design Rating</span>
+                    <span class="awards-ticker-star">✦</span>
+                    <span>Dynamic Business Company Award</span>
+                    <span class="awards-ticker-star">✦</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. WHY CHOOSE FURNCO -->
+        <section class="py-24 bg-surface" id="why-us">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="title-with-ribbons reveal-up">
+                    <div class="title-ribbon title-ribbon-left">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldPremium" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#EAB95D" />
+                                    <stop offset="30%" stop-color="#FDF1CA" />
+                                    <stop offset="50%" stop-color="#C29636" />
+                                    <stop offset="80%" stop-color="#FDF1CA" />
+                                    <stop offset="100%" stop-color="#8F6A15" />
+                                </linearGradient>
+                                <linearGradient id="goldDark" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#614605" />
+                                    <stop offset="50%" stop-color="#A88126" />
+                                    <stop offset="100%" stop-color="#4A3401" />
+                                </linearGradient>
+                                <linearGradient id="goldHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+                                    <stop offset="100%" stop-color="#000000" stop-opacity="0.3"/>
+                                </linearGradient>
+                                <linearGradient id="fadeLeftGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="black" stop-opacity="0"/>
+                                    <stop offset="25%" stop-color="white" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="white" stop-opacity="1"/>
+                                </linearGradient>
+                                <mask id="fadeLeft">
+                                    <rect x="0" y="0" width="300" height="80" fill="url(#fadeLeftGrad)" />
+                                </mask>
+                            </defs>
+                            
+                            <g mask="url(#fadeLeft)">
+                                <!-- Inner shadow for 3D depth -->
+                                <path d="M-10,54 Q75,14 150,54 T250,54" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                                
+                                <!-- Main Ribbon Body -->
+                                <path d="M-10,50 Q75,10 150,50 T250,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                                
+                                <!-- Shine Overlay -->
+                                <path d="M-10,50 Q75,10 150,50 T250,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            </g>
+                            
+                            <!-- The Bow -->
+                            <g transform="translate(225, 20) scale(0.6)">
+                                <!-- Darker back tails -->
+                                <path d="M45,55 L20,105 L35,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M55,55 L80,105 L65,105 L50,60 Z" fill="url(#goldDark)"/>
+                                
+                                <!-- Front tails -->
+                                <path d="M45,55 L10,100 L30,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M55,55 L90,100 L70,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                
+                                <!-- Darker back loops -->
+                                <path d="M50,50 C0,15 -10,75 45,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C100,15 110,75 55,55 Z" fill="url(#goldDark)"/>
+                                
+                                <!-- Front loops -->
+                                <path d="M50,50 C15,25 0,65 45,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C85,25 100,65 55,55 Z" fill="url(#goldPremium)"/>
+                                
+                                <!-- Front loops shine -->
+                                <path d="M50,50 C25,30 10,60 45,55 Z" fill="url(#goldHighlight)"/>
+                                <path d="M50,50 C75,30 90,60 55,55 Z" fill="url(#goldHighlight)"/>
+                                
+                                <!-- Center knot -->
+                                <circle cx="50" cy="53" r="8" fill="url(#goldDark)"/>
+                                <circle cx="50" cy="53" r="6" fill="url(#goldPremium)"/>
+                                <circle cx="50" cy="52" r="4" fill="url(#goldHighlight)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="text-center">
+                        <span class="section-subtitle">The Furnco Difference</span>
+                        <h2>Why Homeowners <span class="text-maroon">Choose Furnco</span></h2>
+                    </div>
+                    <div class="title-ribbon title-ribbon-right">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="fadeRightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="white" stop-opacity="1"/>
+                                    <stop offset="75%" stop-color="white" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="black" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="fadeRight">
+                                    <rect x="0" y="0" width="300" height="80" fill="url(#fadeRightGrad)" />
+                                </mask>
+                            </defs>
+                            <g mask="url(#fadeRight)">
+                                <path d="M50,50 Q150,90 225,50 T310,50" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                                <path d="M50,50 Q150,90 225,50 T310,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                                <path d="M50,50 Q150,90 225,50 T310,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            </g>
+                            <g transform="translate(15, 20) scale(0.6)">
+                                <path d="M45,55 L20,105 L35,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M55,55 L80,105 L65,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M45,55 L10,100 L30,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M55,55 L90,100 L70,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C0,15 -10,75 45,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C100,15 110,75 55,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C15,25 0,65 45,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C85,25 100,65 55,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C25,30 10,60 45,55 Z" fill="url(#goldHighlight)"/>
+                                <path d="M50,50 C75,30 90,60 55,55 Z" fill="url(#goldHighlight)"/>
+                                <circle cx="50" cy="53" r="8" fill="url(#goldDark)"/>
+                                <circle cx="50" cy="53" r="6" fill="url(#goldPremium)"/>
+                                <circle cx="50" cy="52" r="4" fill="url(#goldHighlight)"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="benefit-card reveal-up delay-100">
+                        <svg class="w-10 h-10 benefit-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        <h3 class="text-xl font-serif font-semibold mb-3">End-to-End Design</h3>
+                        <p class="text-gray-500 font-light text-sm leading-relaxed">From conceptual layouts to final installation, we handle everything so you don't have to lift a finger.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="benefit-card reveal-up delay-200">
+                        <svg class="w-10 h-10 benefit-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                        <h3 class="text-xl font-serif font-semibold mb-3">Custom Interiors</h3>
+                        <p class="text-gray-500 font-light text-sm leading-relaxed">Bespoke furniture and curated decor pieces tailored specifically for your lifestyle and space.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="benefit-card reveal-up delay-300">
+                        <svg class="w-10 h-10 benefit-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <h3 class="text-xl font-serif font-semibold mb-3">On-Time Delivery</h3>
+                        <p class="text-gray-500 font-light text-sm leading-relaxed">Rigorous project management ensures your dream home is ready exactly when promised.</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="benefit-card reveal-up delay-300">
+                        <svg class="w-10 h-10 benefit-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                        <h3 class="text-xl font-serif font-semibold mb-3">Premium Craftsmanship</h3>
+                        <p class="text-gray-500 font-light text-sm leading-relaxed">Uncompromising quality using imported materials and award-winning architectural techniques.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ROOM COLLECTIONS -->
+        <section class="py-24" style="background-color: #F5EBE1;" id="collections">
+            <div class="max-w-[1400px] mx-auto px-8">
+                
+                <div class="title-with-ribbons reveal-up">
+                    <!-- Left Ribbon -->
+                    <div class="title-ribbon title-ribbon-left">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldPremium" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#EAB95D" />
+                                    <stop offset="30%" stop-color="#FDF1CA" />
+                                    <stop offset="50%" stop-color="#C29636" />
+                                    <stop offset="80%" stop-color="#FDF1CA" />
+                                    <stop offset="100%" stop-color="#8F6A15" />
+                                </linearGradient>
+                                <linearGradient id="goldDark" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#614605" />
+                                    <stop offset="50%" stop-color="#A88126" />
+                                    <stop offset="100%" stop-color="#4A3401" />
+                                </linearGradient>
+                                <linearGradient id="goldHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+                                    <stop offset="100%" stop-color="#000000" stop-opacity="0.3"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Inner shadow for 3D depth -->
+                            <path d="M0,54 Q75,14 150,54 T250,54" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- Main Ribbon Body -->
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- Shine Overlay -->
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- The Bow -->
+                            <g transform="translate(225, 20) scale(0.6)">
+                                <!-- Darker back tails -->
+                                <path d="M45,55 L20,105 L35,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M55,55 L80,105 L65,105 L50,60 Z" fill="url(#goldDark)"/>
+                                
+                                <!-- Front tails -->
+                                <path d="M45,55 L10,100 L30,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M55,55 L90,100 L70,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                
+                                <!-- Darker back loops -->
+                                <path d="M50,50 C0,15 -10,75 45,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C100,15 110,75 55,55 Z" fill="url(#goldDark)"/>
+                                
+                                <!-- Front loops -->
+                                <path d="M50,50 C15,25 0,65 45,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C85,25 100,65 55,55 Z" fill="url(#goldPremium)"/>
+                                
+                                <!-- Front loops shine -->
+                                <path d="M50,50 C25,30 10,60 45,55 Z" fill="url(#goldHighlight)"/>
+                                <path d="M50,50 C75,30 90,60 55,55 Z" fill="url(#goldHighlight)"/>
+                                
+                                <!-- Center knot -->
+                                <circle cx="50" cy="53" r="8" fill="url(#goldDark)"/>
+                                <circle cx="50" cy="53" r="6" fill="url(#goldPremium)"/>
+                                <circle cx="50" cy="52" r="4" fill="url(#goldHighlight)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    
+                    <!-- Title -->
+                    <h2>Explore <span class="text-maroon">By Room</span></h2>
+                    
+                    <!-- Right Ribbon -->
+                    <div class="title-ribbon title-ribbon-right">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="fadeRightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="white" stop-opacity="1"/>
+                                    <stop offset="75%" stop-color="white" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="black" stop-opacity="0"/>
+                                </linearGradient>
+                                <mask id="fadeRight">
+                                    <rect x="0" y="0" width="300" height="80" fill="url(#fadeRightGrad)" />
+                                </mask>
+                            </defs>
+                            <g mask="url(#fadeRight)">
+                                <path d="M50,50 Q150,90 225,50 T310,50" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                                <path d="M50,50 Q150,90 225,50 T310,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                                <path d="M50,50 Q150,90 225,50 T310,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            </g>
+                            <g transform="translate(15, 20) scale(0.6)">
+                                <path d="M45,55 L20,105 L35,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M55,55 L80,105 L65,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M45,55 L10,100 L30,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M55,55 L90,100 L70,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C0,15 -10,75 45,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C100,15 110,75 55,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C15,25 0,65 45,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C85,25 100,65 55,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C25,30 10,60 45,55 Z" fill="url(#goldHighlight)"/>
+                                <path d="M50,50 C75,30 90,60 55,55 Z" fill="url(#goldHighlight)"/>
+                                <circle cx="50" cy="53" r="8" fill="url(#goldDark)"/>
+                                <circle cx="50" cy="53" r="6" fill="url(#goldPremium)"/>
+                                <circle cx="50" cy="52" r="4" fill="url(#goldHighlight)"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal-up delay-100">
+                    <!-- Bedroom -->
+                    <a href="portfolio.html" class="room-card group">
+                        <div class="rc-ribbon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="leftLoopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#FFF8D1" />
+                                        <stop offset="40%" stop-color="#EAB95D" />
+                                        <stop offset="85%" stop-color="#9C771D" />
+                                        <stop offset="100%" stop-color="#4F3804" />
+                                    </linearGradient>
+                                    <linearGradient id="rightLoopGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#FFF8D1" />
+                                        <stop offset="40%" stop-color="#EAB95D" />
+                                        <stop offset="85%" stop-color="#9C771D" />
+                                        <stop offset="100%" stop-color="#4F3804" />
+                                    </linearGradient>
+                                    <linearGradient id="knotGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                                        <stop offset="0%" stop-color="#5E430B" />
+                                        <stop offset="25%" stop-color="#D4AF37" />
+                                        <stop offset="50%" stop-color="#FFF8D1" />
+                                        <stop offset="75%" stop-color="#D4AF37" />
+                                        <stop offset="100%" stop-color="#5E430B" />
+                                    </linearGradient>
+                                    <linearGradient id="leftTailGrad" x1="80%" y1="20%" x2="20%" y2="80%">
+                                        <stop offset="0%" stop-color="#382601" />
+                                        <stop offset="30%" stop-color="#C59E3F" />
+                                        <stop offset="70%" stop-color="#FFF8D1" />
+                                        <stop offset="100%" stop-color="#9C771D" />
+                                    </linearGradient>
+                                    <linearGradient id="rightTailGrad" x1="20%" y1="20%" x2="80%" y2="80%">
+                                        <stop offset="0%" stop-color="#382601" />
+                                        <stop offset="30%" stop-color="#C59E3F" />
+                                        <stop offset="70%" stop-color="#FFF8D1" />
+                                        <stop offset="100%" stop-color="#9C771D" />
+                                    </linearGradient>
+                                    <linearGradient id="hollowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#2D1E01" />
+                                        <stop offset="100%" stop-color="#735410" />
+                                    </linearGradient>
+                                    <filter id="bowShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.45"/>
+                                    </filter>
+                                </defs>
+                                <g filter="url(#bowShadow)">
+                                    <!-- Left Tail -->
+                                    <path d="M45,50 C40,64 28,78 12,88 L18,80 L25,84 C34,76 42,64 48,52 Z" fill="url(#leftTailGrad)"/>
+                                    <!-- Right Tail -->
+                                    <path d="M55,50 C60,64 72,78 88,88 L82,80 L75,84 C66,76 58,64 52,52 Z" fill="url(#rightTailGrad)"/>
+                                    
+                                    <!-- Left Loop Outer -->
+                                    <path d="M46,46 C32,25 12,22 8,36 C4,50 22,56 46,48 Z" fill="url(#leftLoopGrad)"/>
+                                    <!-- Left Loop Inner Hole -->
+                                    <path d="M14,35 C20,26 35,34 44,45 C32,45 22,42 14,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Right Loop Outer -->
+                                    <path d="M54,46 C68,25 88,22 92,36 C96,50 78,56 54,48 Z" fill="url(#rightLoopGrad)"/>
+                                    <!-- Right Loop Inner Hole -->
+                                    <path d="M86,35 C80,26 65,34 56,45 C68,45 78,42 86,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Knot -->
+                                    <path d="M43,44 C43,39 57,39 57,44 L57,56 C57,61 43,61 43,56 Z" fill="url(#knotGrad)"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <img src="images/walk-bedroom.png" alt="Bedroom" class="rc-img">
+                        <div class="rc-overlay"></div>
+                        <div class="rc-content">
+                            <h3 class="rc-title">Bedroom</h3>
+                            <span class="rc-link">Explore Now</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Study Room -->
+                    <a href="portfolio.html" class="room-card group">
+                        <div class="rc-ribbon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#bowShadow)">
+                                    <!-- Left Tail -->
+                                    <path d="M45,50 C40,64 28,78 12,88 L18,80 L25,84 C34,76 42,64 48,52 Z" fill="url(#leftTailGrad)"/>
+                                    <!-- Right Tail -->
+                                    <path d="M55,50 C60,64 72,78 88,88 L82,80 L75,84 C66,76 58,64 52,52 Z" fill="url(#rightTailGrad)"/>
+                                    
+                                    <!-- Left Loop Outer -->
+                                    <path d="M46,46 C32,25 12,22 8,36 C4,50 22,56 46,48 Z" fill="url(#leftLoopGrad)"/>
+                                    <!-- Left Loop Inner Hole -->
+                                    <path d="M14,35 C20,26 35,34 44,45 C32,45 22,42 14,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Right Loop Outer -->
+                                    <path d="M54,46 C68,25 88,22 92,36 C96,50 78,56 54,48 Z" fill="url(#rightLoopGrad)"/>
+                                    <!-- Right Loop Inner Hole -->
+                                    <path d="M86,35 C80,26 65,34 56,45 C68,45 78,42 86,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Knot -->
+                                    <path d="M43,44 C43,39 57,39 57,44 L57,56 C57,61 43,61 43,56 Z" fill="url(#knotGrad)"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <img src="images/walk-foyer.png" alt="Study Room" class="rc-img">
+                        <div class="rc-overlay"></div>
+                        <div class="rc-content">
+                            <h3 class="rc-title">Study Room</h3>
+                            <span class="rc-link">Explore Now</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Living Room -->
+                    <a href="portfolio.html" class="room-card group">
+                        <div class="rc-ribbon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#bowShadow)">
+                                    <!-- Left Tail -->
+                                    <path d="M45,50 C40,64 28,78 12,88 L18,80 L25,84 C34,76 42,64 48,52 Z" fill="url(#leftTailGrad)"/>
+                                    <!-- Right Tail -->
+                                    <path d="M55,50 C60,64 72,78 88,88 L82,80 L75,84 C66,76 58,64 52,52 Z" fill="url(#rightTailGrad)"/>
+                                    
+                                    <!-- Left Loop Outer -->
+                                    <path d="M46,46 C32,25 12,22 8,36 C4,50 22,56 46,48 Z" fill="url(#leftLoopGrad)"/>
+                                    <!-- Left Loop Inner Hole -->
+                                    <path d="M14,35 C20,26 35,34 44,45 C32,45 22,42 14,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Right Loop Outer -->
+                                    <path d="M54,46 C68,25 88,22 92,36 C96,50 78,56 54,48 Z" fill="url(#rightLoopGrad)"/>
+                                    <!-- Right Loop Inner Hole -->
+                                    <path d="M86,35 C80,26 65,34 56,45 C68,45 78,42 86,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Knot -->
+                                    <path d="M43,44 C43,39 57,39 57,44 L57,56 C57,61 43,61 43,56 Z" fill="url(#knotGrad)"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <img src="images/walk-living.png" alt="Living Room" class="rc-img">
+                        <div class="rc-overlay"></div>
+                        <div class="rc-content">
+                            <h3 class="rc-title">Living Room</h3>
+                            <span class="rc-link">Explore Now</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Dining Room -->
+                    <a href="portfolio.html" class="room-card group">
+                        <div class="rc-ribbon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#bowShadow)">
+                                    <!-- Left Tail -->
+                                    <path d="M45,50 C40,64 28,78 12,88 L18,80 L25,84 C34,76 42,64 48,52 Z" fill="url(#leftTailGrad)"/>
+                                    <!-- Right Tail -->
+                                    <path d="M55,50 C60,64 72,78 88,88 L82,80 L75,84 C66,76 58,64 52,52 Z" fill="url(#rightTailGrad)"/>
+                                    
+                                    <!-- Left Loop Outer -->
+                                    <path d="M46,46 C32,25 12,22 8,36 C4,50 22,56 46,48 Z" fill="url(#leftLoopGrad)"/>
+                                    <!-- Left Loop Inner Hole -->
+                                    <path d="M14,35 C20,26 35,34 44,45 C32,45 22,42 14,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Right Loop Outer -->
+                                    <path d="M54,46 C68,25 88,22 92,36 C96,50 78,56 54,48 Z" fill="url(#rightLoopGrad)"/>
+                                    <!-- Right Loop Inner Hole -->
+                                    <path d="M86,35 C80,26 65,34 56,45 C68,45 78,42 86,35 Z" fill="url(#hollowGrad)"/>
+                                    
+                                    <!-- Knot -->
+                                    <path d="M43,44 C43,39 57,39 57,44 L57,56 C57,61 43,61 43,56 Z" fill="url(#knotGrad)"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <img src="images/walk-kitchen.png" alt="Dining Room" class="rc-img">
+                        <div class="rc-overlay"></div>
+                        <div class="rc-content">
+                            <h3 class="rc-title">Dining Room</h3>
+                            <span class="rc-link">Explore Now</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- 4. DESIGN JOURNEY -->
+        <section class="py-24 bg-surface" id="process">
+            <div class="max-w-[1000px] mx-auto px-8">
+                <div class="title-with-ribbons reveal-up">
+                    <div class="title-ribbon title-ribbon-left">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldPremium" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#EAB95D" />
+                                    <stop offset="30%" stop-color="#FDF1CA" />
+                                    <stop offset="50%" stop-color="#C29636" />
+                                    <stop offset="80%" stop-color="#FDF1CA" />
+                                    <stop offset="100%" stop-color="#8F6A15" />
+                                </linearGradient>
+                                <linearGradient id="goldDark" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#614605" />
+                                    <stop offset="50%" stop-color="#A88126" />
+                                    <stop offset="100%" stop-color="#4A3401" />
+                                </linearGradient>
+                                <linearGradient id="goldHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+                                    <stop offset="100%" stop-color="#000000" stop-opacity="0.3"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Inner shadow for 3D depth -->
+                            <path d="M0,54 Q75,14 150,54 T250,54" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- Main Ribbon Body -->
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- Shine Overlay -->
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- The Bow -->
+                            <g transform="translate(225, 20) scale(0.6)">
+                                <!-- Darker back tails -->
+                                <path d="M45,55 L20,105 L35,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M55,55 L80,105 L65,105 L50,60 Z" fill="url(#goldDark)"/>
+                                
+                                <!-- Front tails -->
+                                <path d="M45,55 L10,100 L30,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M55,55 L90,100 L70,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                
+                                <!-- Darker back loops -->
+                                <path d="M50,50 C0,15 -10,75 45,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C100,15 110,75 55,55 Z" fill="url(#goldDark)"/>
+                                
+                                <!-- Front loops -->
+                                <path d="M50,50 C15,25 0,65 45,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C85,25 100,65 55,55 Z" fill="url(#goldPremium)"/>
+                                
+                                <!-- Front loops shine -->
+                                <path d="M50,50 C25,30 10,60 45,55 Z" fill="url(#goldHighlight)"/>
+                                <path d="M50,50 C75,30 90,60 55,55 Z" fill="url(#goldHighlight)"/>
+                                
+                                <!-- Center knot -->
+                                <circle cx="50" cy="53" r="8" fill="url(#goldDark)"/>
+                                <circle cx="50" cy="53" r="6" fill="url(#goldPremium)"/>
+                                <circle cx="50" cy="52" r="4" fill="url(#goldHighlight)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="text-center">
+                        <span class="section-subtitle">Our Process</span>
+                        <h2>From Concept <span class="text-maroon">To Completion</span></h2>
+                    </div>
+                    <div class="title-ribbon title-ribbon-right">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            <g transform="translate(15, 20) scale(0.6)">
+                                <path d="M45,55 L20,105 L35,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M55,55 L80,105 L65,105 L50,60 Z" fill="url(#goldDark)"/>
+                                <path d="M45,55 L10,100 L30,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M55,55 L90,100 L70,100 L50,60 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C0,15 -10,75 45,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C100,15 110,75 55,55 Z" fill="url(#goldDark)"/>
+                                <path d="M50,50 C15,25 0,65 45,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C85,25 100,65 55,55 Z" fill="url(#goldPremium)"/>
+                                <path d="M50,50 C25,30 10,60 45,55 Z" fill="url(#goldHighlight)"/>
+                                <path d="M50,50 C75,30 90,60 55,55 Z" fill="url(#goldHighlight)"/>
+                                <circle cx="50" cy="53" r="8" fill="url(#goldDark)"/>
+                                <circle cx="50" cy="53" r="6" fill="url(#goldPremium)"/>
+                                <circle cx="50" cy="52" r="4" fill="url(#goldHighlight)"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                
+                <style>
+                    /* Ribbon Adjustments */
+                    .title-ribbon {
+                        max-width: 220px !important;
+                        margin: 0 -10px !important;
+                    }
+                    /* Premium Timeline CSS */
+                    .premium-timeline {
+                        position: relative;
+                        max-width: 900px;
+                        margin: 4rem auto 2rem;
+                    }
+                    .premium-timeline::before {
+                        content: '';
+                        position: absolute;
+                        top: 25px;
+                        bottom: 0;
+                        left: 24px;
+                        width: 2px;
+                        background: linear-gradient(to bottom, #EAB95D 0%, #FDF1CA 50%, transparent 100%);
+                        z-index: 1;
+                        opacity: 0.6;
+                    }
+
+                    .pt-item {
+                        position: relative;
+                        padding-left: 80px;
+                        margin-bottom: 2.5rem;
+                        z-index: 2;
+                        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                    }
+                    .pt-item:hover {
+                        transform: translateX(10px);
+                    }
+                    .pt-number {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 50px;
+                        height: 50px;
+                        background: linear-gradient(135deg, #FDFBF7, #fff);
+                        border: 2px solid #EAB95D;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: 'Playfair Display', serif;
+                        font-size: 1.25rem;
+                        color: #A8843C;
+                        font-weight: 700;
+                        box-shadow: 0 8px 16px rgba(168, 132, 60, 0.15), inset 0 2px 4px rgba(255,255,255,0.8);
+                        transition: all 0.4s ease;
+                        z-index: 3;
+                    }
+                    .pt-item:hover .pt-number {
+                        background: linear-gradient(135deg, #EAB95D, #C29636);
+                        color: #fff;
+                        border-color: #FDF1CA;
+                        box-shadow: 0 12px 24px rgba(168, 132, 60, 0.3), inset 0 2px 4px rgba(255,255,255,0.4);
+                        transform: scale(1.15) rotate(5deg);
+                    }
+                    .pt-content {
+                        background: white;
+                        padding: 2rem 2.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
+                        border: 1px solid rgba(229, 215, 183, 0.3);
+                        transition: all 0.4s ease;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .pt-content::before {
+                        content: '';
+                        position: absolute;
+                        top: 0; left: 0; width: 4px; height: 100%;
+                        background: linear-gradient(to bottom, #EAB95D, #C29636);
+                        opacity: 0;
+                        transition: opacity 0.4s ease;
+                    }
+                    .pt-item:hover .pt-content {
+                        box-shadow: 0 15px 35px rgba(168, 132, 60, 0.08), 0 5px 15px rgba(0,0,0,0.04);
+                        border-color: rgba(229, 215, 183, 0.8);
+                        transform: translateY(-2px);
+                    }
+                    .pt-item:hover .pt-content::before {
+                        opacity: 1;
+                    }
+                    .pt-content h4 {
+                        font-family: 'Playfair Display', serif;
+                        font-size: 1.5rem;
+                        color: #2D2A26;
+                        margin-bottom: 0.75rem;
+                        font-weight: 600;
+                        transition: color 0.3s ease;
+                    }
+                    .pt-item:hover .pt-content h4 {
+                        color: #735410;
+                    }
+                    .pt-content p {
+                        color: #666;
+                        font-size: 1rem;
+                        line-height: 1.6;
+                        margin: 0;
+                    }
+                </style>
+                <div class="premium-timeline">
+                    <div class="pt-item reveal-up">
+                        <div class="pt-number">01</div>
+                        <div class="pt-content">
+                            <h4>Consultation</h4>
+                            <p>We begin with a detailed discussion to understand your vision, lifestyle requirements, and aesthetic preferences.</p>
+                        </div>
+                    </div>
+                    <div class="pt-item reveal-up delay-100">
+                        <div class="pt-number">02</div>
+                        <div class="pt-content">
+                            <h4>Design Planning</h4>
+                            <p>Our architects create precise 2D layouts and ultra-realistic 3D walkthroughs for your approval.</p>
+                        </div>
+                    </div>
+                    <div class="pt-item reveal-up delay-200">
+                        <div class="pt-number">03</div>
+                        <div class="pt-content">
+                            <h4>Material Selection</h4>
+                            <p>Curating the finest global materials, fabrics, and finishes to bring the concept to life.</p>
+                        </div>
+                    </div>
+                    <div class="pt-item reveal-up delay-300">
+                        <div class="pt-number">04</div>
+                        <div class="pt-content">
+                            <h4>Execution</h4>
+                            <p>Skilled craftsmen and project managers ensure flawless on-site implementation.</p>
+                        </div>
+                    </div>
+                    <div class="pt-item reveal-up delay-400">
+                        <div class="pt-number">05</div>
+                        <div class="pt-content">
+                            <h4>Final Handover</h4>
+                            <p>A meticulous quality check before welcoming you to your newly transformed luxury space.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.5. BEFORE & AFTER TRANSFORMATIONS -->
+        <section class="py-24" style="background-color: #F5EBE1;" id="transformations">
+            <div class="max-w-[1200px] mx-auto px-8">
+                <!-- Header -->
+                <!-- Header -->
+                <div class="text-center mb-6 reveal-up">
+                    <span class="section-subtitle">Transformation Stories</span>
+                </div>
+                <div class="title-with-ribbons reveal-up mb-8" style="margin-bottom: 2rem;">
+                    <div class="title-ribbon title-ribbon-left">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldPremium" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#EAB95D" />
+                                    <stop offset="30%" stop-color="#FDF1CA" />
+                                    <stop offset="50%" stop-color="#C29636" />
+                                    <stop offset="80%" stop-color="#FDF1CA" />
+                                    <stop offset="100%" stop-color="#8F6A15" />
+                                </linearGradient>
+                                <linearGradient id="goldDark" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#614605" />
+                                    <stop offset="50%" stop-color="#A88126" />
+                                    <stop offset="100%" stop-color="#4A3401" />
+                                </linearGradient>
+                                <linearGradient id="goldHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+                                    <stop offset="100%" stop-color="#000000" stop-opacity="0.3"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Inner shadow for 3D depth -->
+                            <path d="M0,54 Q75,14 150,54 T250,54" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- Main Ribbon Body -->
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- Shine Overlay -->
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            
+                            <!-- The Bow -->
+                            <g transform="translate(225, 20) scale(0.6)" filter="url(#bowShadow)">
+                                <!-- Left Tail -->
+                                <path d="M45,50 C40,64 28,78 12,88 L18,80 L25,84 C34,76 42,64 48,52 Z" fill="url(#leftTailGrad)"/>
+                                <!-- Right Tail -->
+                                <path d="M55,50 C60,64 72,78 88,88 L82,80 L75,84 C66,76 58,64 52,52 Z" fill="url(#rightTailGrad)"/>
+                                
+                                <!-- Left Loop Outer -->
+                                <path d="M46,46 C32,25 12,22 8,36 C4,50 22,56 46,48 Z" fill="url(#leftLoopGrad)"/>
+                                <!-- Left Loop Inner Hole -->
+                                <path d="M14,35 C20,26 35,34 44,45 C32,45 22,42 14,35 Z" fill="url(#hollowGrad)"/>
+                                
+                                <!-- Right Loop Outer -->
+                                <path d="M54,46 C68,25 88,22 92,36 C96,50 78,56 54,48 Z" fill="url(#rightLoopGrad)"/>
+                                <!-- Right Loop Inner Hole -->
+                                <path d="M86,35 C80,26 65,34 56,45 C68,45 78,42 86,35 Z" fill="url(#hollowGrad)"/>
+                                
+                                <!-- Knot -->
+                                <path d="M43,44 C43,39 57,39 57,44 L57,56 C57,61 43,61 43,56 Z" fill="url(#knotGrad)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="text-center">
+                        <h2>Before <span class="text-maroon">& After</span></h2>
+                    </div>
+                    <div class="title-ribbon title-ribbon-right">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="url(#goldDark)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="url(#goldPremium)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="url(#goldHighlight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                            <g transform="translate(15, 20) scale(0.6)" filter="url(#bowShadow)">
+                                <!-- Left Tail -->
+                                <path d="M45,50 C40,64 28,78 12,88 L18,80 L25,84 C34,76 42,64 48,52 Z" fill="url(#leftTailGrad)"/>
+                                <!-- Right Tail -->
+                                <path d="M55,50 C60,64 72,78 88,88 L82,80 L75,84 C66,76 58,64 52,52 Z" fill="url(#rightTailGrad)"/>
+                                
+                                <!-- Left Loop Outer -->
+                                <path d="M46,46 C32,25 12,22 8,36 C4,50 22,56 46,48 Z" fill="url(#leftLoopGrad)"/>
+                                <!-- Left Loop Inner Hole -->
+                                <path d="M14,35 C20,26 35,34 44,45 C32,45 22,42 14,35 Z" fill="url(#hollowGrad)"/>
+                                
+                                <!-- Right Loop Outer -->
+                                <path d="M54,46 C68,25 88,22 92,36 C96,50 78,56 54,48 Z" fill="url(#rightLoopGrad)"/>
+                                <!-- Right Loop Inner Hole -->
+                                <path d="M86,35 C80,26 65,34 56,45 C68,45 78,42 86,35 Z" fill="url(#hollowGrad)"/>
+                                
+                                <!-- Knot -->
+                                <path d="M43,44 C43,39 57,39 57,44 L57,56 C57,61 43,61 43,56 Z" fill="url(#knotGrad)"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="text-center mb-16 reveal-up">
+                    <div class="text-gray-600 font-light max-w-3xl mx-auto text-lg space-y-4">
+                        <p class="text-xl text-gray-800">Delivering precision interiors for one of India's busiest gateways.<br>Furnco at Kempegowda International Airport, Bengaluru.</p>
+                        <p class="text-gray-600">✈️ Temporary, but impactful. EbixCash is now live at Terminal 2 with a transit-ready setup by Furnco — designed to serve travelers seamlessly while the permanent installation is underway.</p>
+                        <div class="flex flex-col items-center justify-center gap-2 pt-2 text-sm font-medium text-gray-700">
+                            <div>
+                                <span>💼 Fast. Functional. Forex-ready.</span>
+                                <span class="mx-3 text-gray-300">|</span>
+                                <span>📍 Terminal 2 | Temporary Structure</span>
+                            </div>
+                            <span class="text-[#A8843C] flex items-center gap-1">
+                                ✍️ Final transformation coming soon... stay tuned
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Component -->
+                <div class="reveal-up delay-100 relative max-w-[1000px] mx-auto">
+                    <div class="ba-slider-container shadow-2xl">
+                        <!-- Before Image (Left side) -->
+                        <img src="images/kiosk-before.png" alt="Before" class="ba-img ba-img-before">
+                        <div class="ba-label ba-label-before">BEFORE</div>
+                        
+                        <!-- After Image (Right side) -->
+                        <img src="images/kiosk-after.png" alt="After" class="ba-img ba-img-after">
+                        <div class="ba-label ba-label-after">AFTER</div>
+                        
+                        <!-- Slider Input -->
+                        <input type="range" min="0" max="100" value="50" class="ba-slider">
+                        
+                        <!-- Handle Visual -->
+                        <div class="ba-handle">
+                            <div class="ba-handle-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Details Bar -->
+                    <div class="bg-white p-6 mt-[-20px] relative z-10 mx-auto w-[95%] shadow-xl flex flex-wrap lg:flex-nowrap items-center justify-between gap-6 border-b-2 border-t border-x border-gray-100 rounded-sm">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A8843C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                            <div>
+                                <h6 class="text-[#A8843C] text-[10px] font-bold uppercase tracking-wider mb-1">Project Type</h6>
+                                <p class="text-sm font-medium text-gray-800">Commercial Kiosk</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A8843C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <div>
+                                <h6 class="text-[#A8843C] text-[10px] font-bold uppercase tracking-wider mb-1">Duration</h6>
+                                <p class="text-sm font-medium text-gray-800">15 Days</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A8843C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                            <div>
+                                <h6 class="text-[#A8843C] text-[10px] font-bold uppercase tracking-wider mb-1">Area</h6>
+                                <p class="text-sm font-medium text-gray-800">120 Sq Ft</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A8843C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                            <div>
+                                <h6 class="text-[#A8843C] text-[10px] font-bold uppercase tracking-wider mb-1">Style</h6>
+                                <p class="text-sm font-medium text-gray-800">Modern Retail</p>
+                            </div>
+                        </div>
+                        <a href="portfolio.html" class="flex items-center gap-2 border border-[#E5D7B7] text-[#A8843C] px-5 py-2.5 text-[10px] font-bold uppercase tracking-widest hover:bg-[#A8843C] hover:text-white transition-colors duration-300">
+                            View Project Details &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = document.querySelectorAll('.ba-slider');
+            sliders.forEach(slider => {
+                const container = slider.parentElement;
+                const afterImg = container.querySelector('.ba-img-after');
+                const handle = container.querySelector('.ba-handle');
+                
+                slider.addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    afterImg.style.clipPath = `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
+                    handle.style.left = `${val}%`;
+                });
+            });
+        });
+        </script>
+
+        <!-- 5. CLIENT TESTIMONIALS -->
+        <section class="py-24" style="background-color: #F5EBE1;" id="testimonials">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="title-with-ribbons reveal-up">
+                    <div class="title-ribbon title-ribbon-left">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldRibbonTitle" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFF2B2" />
+                                    <stop offset="30%" stop-color="#D4AF37" />
+                                    <stop offset="70%" stop-color="#AA8222" />
+                                    <stop offset="100%" stop-color="#735410" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="url(#goldRibbonTitle)" stroke-width="14" fill="none" stroke-linecap="round"/>
+                            <path d="M0,50 Q75,10 150,50 T250,50" stroke="#FFF2B2" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+                            <g transform="translate(230, 15) scale(0.6)">
+                                <path d="M45,55 L20,95 L35,95 L50,60 Z" fill="url(#goldRibbonTitle)"/>
+                                <path d="M55,55 L80,95 L65,95 L50,60 Z" fill="url(#goldRibbonTitle)"/>
+                                <path d="M50,50 C20,30 10,60 45,55 Z" fill="url(#goldRibbonTitle)"/>
+                                <path d="M50,50 C80,30 90,60 55,55 Z" fill="url(#goldRibbonTitle)"/>
+                                <circle cx="50" cy="53" r="7" fill="url(#goldRibbonTitle)"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="text-center">
+                        <h2>Client <span class="text-maroon">Stories</span></h2>
+                    </div>
+                    <div class="title-ribbon title-ribbon-right">
+                        <svg viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="url(#goldRibbonTitle)" stroke-width="14" fill="none" stroke-linecap="round"/>
+                            <path d="M50,50 Q150,90 225,50 T300,50" stroke="#FFF2B2" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+                            <g transform="translate(10, 15) scale(0.6)">
+                                <path d="M45,55 L20,95 L35,95 L50,60 Z" fill="url(#goldRibbonTitle)"/>
+                                <path d="M55,55 L80,95 L65,95 L50,60 Z" fill="url(#goldRibbonTitle)"/>
+                                <path d="M50,50 C20,30 10,60 45,55 Z" fill="url(#goldRibbonTitle)"/>
+                                <path d="M50,50 C80,30 90,60 55,55 Z" fill="url(#goldRibbonTitle)"/>
+                                <circle cx="50" cy="53" r="7" fill="url(#goldRibbonTitle)"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="testimonial-card bg-white p-8 rounded-2xl border border-gray-100 shadow-sm reveal-up relative">
+                        <span class="quote-mark">"</span>
+                        <p>"Furnco didn't just design a house; they crafted a home that perfectly reflects our personality. The attention to detail in our villa is truly architectural."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="images/client_portrait_1.png" alt="Vikram S." class="w-12 h-12 rounded-full object-cover border-2 border-[#D4AF37]/30">
+                            <div>
+                                <h5 class="font-bold font-serif text-lg">Vikram S.</h5>
+                                <span class="text-xs text-gold uppercase tracking-widest">Modern Villa, Hyderabad</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card bg-white p-8 rounded-2xl border border-gray-100 shadow-sm reveal-up delay-100 relative">
+                        <span class="quote-mark">"</span>
+                        <p>"The 3D walkthroughs were exactly what was delivered. Their premium craftsmanship and transparent timeline made the entire process seamless."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="images/client_portrait_2.png" alt="Priya R." class="w-12 h-12 rounded-full object-cover border-2 border-[#D4AF37]/30">
+                            <div>
+                                <h5 class="font-bold font-serif text-lg">Priya R.</h5>
+                                <span class="text-xs text-gold uppercase tracking-widest">Luxury Apartment, Bangalore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CALL TO ACTION -->
+        <section class="cta-section">
+            <div class="cta-bg"></div>
+            <div class="cta-content max-w-3xl mx-auto reveal-up">
+                <h2 class="font-serif text-5xl mb-6">Ready To Transform Your Space?</h2>
+                <p class="text-gray-300 font-light mb-10 text-lg">Experience the pinnacle of Indian luxury interior design.</p>
+                <a href="contact.html" class="bg-gold text-primary px-8 py-4 text-sm uppercase tracking-widest font-semibold hover:bg-white transition-colors inline-block">Book Free Consultation</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 7. FOOTER -->
+    <footer class="footer-modern">
+        <div class="max-w-[1280px] mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-gray-800 pb-16">
+                
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <div class="mb-6">
+                       <span class="font-serif text-2xl text-white font-bold tracking-wider">FURNCO</span>
+                    </div>
+                    <p class="font-light text-sm leading-relaxed mb-6">Modern Luxury Interior Design Studio<br>Bengaluru, India</p>
+                    <div class="flex gap-4">
+                        <!-- social icons -->
+                        <a href="https://www.facebook.com/profile.php?id=100086378983218&ref=NONE_xav_ig_profile_page_web#" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-gold text-gray-400 hover:text-gold cursor-pointer transition-colors" aria-label="Facebook">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/furnco.india/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-gold text-gray-400 hover:text-gold cursor-pointer transition-colors" aria-label="Instagram">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h5>Quick Links</h5>
+                    <ul class="space-y-3 text-sm font-light">
+                        <li><a href="about.html">About Studio</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="blogs.html" id="nav-blogs">Blogs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Latest Projects -->
+                <div>
+                    <h5>Latest Projects</h5>
+                    <ul class="space-y-3 text-sm font-light">
+                        <li><a href="portfolio.html">The Prestige Residency</a></li>
+                        <li><a href="portfolio.html">Serene Haven Villa</a></li>
+                        <li><a href="portfolio.html">Contemporary Farmhouse</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h5>Contact Information</h5>
+                    <ul class="space-y-3 text-sm font-light">
+                        <li>Whitefield, Bengaluru<br>Karnataka 560066</li>
+                        <li><a href="mailto:studio@furnco.in">studio@furnco.in</a></li>
+                        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs font-light">
+                <p>&copy; 2026 Furnco Interiors. All rights reserved.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Init Reveal Animations -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => {
+          observer.observe(el);
+        });
+
+        // Cinematic Marquee Engine
+        const track = document.querySelector('.expertise-marquee-track');
+        if (track) {
+          const container = document.querySelector('.expertise-marquee-container');
+          const cards = Array.from(track.querySelectorAll('.expertise-card-v2'));
+          
+          // Clone cards for infinite loop
+          cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+          });
+          cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+          });
+          
+          const allCards = Array.from(track.querySelectorAll('.expertise-card-v2'));
+          
+          let currentTranslate = 0;
+          let isHovered = false;
+          let isDragging = false;
+          let startX = 0;
+          let prevTranslate = 0;
+          
+          const speed = 1.0; // pixels per frame
+          
+          // Hover pause
+          container.addEventListener('mouseenter', () => { isHovered = true; });
+          container.addEventListener('mouseleave', () => {
+            isHovered = false;
+            allCards.forEach(c => {
+               if(c.classList.contains('active')) c.style.transform = 'scale(1.08) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+          });
+          
+          // Touch / Drag
+          container.addEventListener('touchstart', e => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            prevTranslate = currentTranslate;
+          }, {passive: true});
+          
+          container.addEventListener('touchmove', e => {
+            if(!isDragging) return;
+            const deltaX = e.touches[0].clientX - startX;
+            currentTranslate = prevTranslate - deltaX;
+          }, {passive: true});
+          
+          container.addEventListener('touchend', () => isDragging = false);
+          
+          // Mouse drag
+          container.addEventListener('mousedown', e => {
+            isDragging = true;
+            startX = e.clientX;
+            prevTranslate = currentTranslate;
+            container.style.cursor = 'grabbing';
+          });
+          window.addEventListener('mouseup', () => {
+            isDragging = false;
+            container.style.cursor = 'grab';
+          });
+          window.addEventListener('mousemove', e => {
+            if(isDragging) {
+              const deltaX = e.clientX - startX;
+              currentTranslate = prevTranslate - deltaX;
+            }
+          });
+          
+          // 3D Tilt Effect
+          allCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+              if (isDragging) return;
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              
+              const xPercent = (x / rect.width - 0.5) * 2;
+              const yPercent = (y / rect.height - 0.5) * 2;
+              
+              const rotateX = yPercent * -5;
+              const rotateY = xPercent * 5;
+              
+              if(card.classList.contains('active')) {
+                card.style.transform = `scale(1.08) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+              }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+              if(card.classList.contains('active')) {
+                card.style.transform = `scale(1.08) perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+              }
+            });
+          });
+          
+          // Animation Loop
+          const cardWidth = cards[0].offsetWidth + 32;
+          const singleSetWidth = cardWidth * cards.length;
+          
+          function render() {
+            if(!isHovered && !isDragging) {
+              currentTranslate += speed;
+            }
+            
+            if (currentTranslate >= singleSetWidth) {
+              currentTranslate -= singleSetWidth;
+            } else if (currentTranslate < 0) {
+              currentTranslate += singleSetWidth;
+            }
+            
+            track.style.transform = `translate3d(${-currentTranslate}px, 0, 0)`;
+            
+            const viewportCenter = window.innerWidth / 2;
+            let targetCard = null;
+            
+            const hoveredCard = allCards.find(c => c.matches(':hover'));
+            
+            if (hoveredCard && !isDragging) {
+                targetCard = hoveredCard;
+            } else {
+                let minDistance = Infinity;
+                allCards.forEach(card => {
+                  const rect = card.getBoundingClientRect();
+                  const cardCenter = rect.left + rect.width / 2;
+                  const distance = Math.abs(viewportCenter - cardCenter);
+                  
+                  if(distance < minDistance) {
+                    minDistance = distance;
+                    targetCard = card;
+                  }
+                });
+            }
+
+            allCards.forEach(card => {
+              const img = card.querySelector('.ec-img-wrap img');
+              if(img) {
+                const rect = card.getBoundingClientRect();
+                const cardCenter = rect.left + rect.width / 2;
+                const parallaxX = (viewportCenter - cardCenter) * 0.15;
+                img.style.transform = `translate3d(${parallaxX}px, 0, 0)`;
+              }
+
+              if(card === targetCard) {
+                if(!card.classList.contains('active')) {
+                   card.classList.add('active');
+                   card.style.transform = 'scale(1.08) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                }
+              } else {
+                card.classList.remove('active');
+                card.style.transform = 'scale(0.95)';
+              }
+            });
+            
+            requestAnimationFrame(render);
+          }
+          
+          requestAnimationFrame(render);
+        }
+      });
+    </script>
+</body>
+</html>

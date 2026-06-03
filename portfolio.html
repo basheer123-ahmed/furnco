@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Portfolio | Furnco Interiors</title>
+    <meta name="description" content="Explore the Furnco Interiors portfolio. View our high-end residential, commercial, and hospitality interior design projects.">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Global Animations JS -->
+    <script src="assets/js/main.js" defer></script>
+    <style>
+      /* Force dark navbar at all times */
+      #site-header {
+        background: rgba(10, 6, 4, 0.95) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+      }
+      #site-header .nav-links a { color: rgba(255, 255, 255, 0.8) !important; font-weight: 500; transition: color 0.3s; }
+      #site-header .nav-links a:hover,
+      #site-header .nav-links a.nav-active { color: #f0d080 !important; }
+      #site-header .nav-logo-wrap img { filter: brightness(0) invert(1) !important; }
+      #site-header #nav-hamburger .ham-line { background: #fff !important; }
+      #site-header #nav-hamburger { border-color: rgba(255,255,255,0.22) !important; }
+      #site-header .mobile-nav-close { color: #fff !important; border-color: rgba(255,255,255,0.22) !important; }
+
+      /* Force dark footer background */
+      footer.bg-primary {
+        background-color: #0A0604 !important;
+      }
+
+      /* Specificity overrides for high-contrast dark sections */
+      .hero-title-white {
+        color: #ffffff !important;
+      }
+      .hero-text-gold {
+        color: #C9A84C !important;
+      }
+      .hero-subtitle-white {
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+
+      /* Premium gold button style */
+      .btn-premium-gold {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        background: linear-gradient(135deg, #c9a84c 0%, #f5d78e 50%, #c9a84c 100%) !important;
+        color: #0A0604 !important;
+        padding: 16px 36px !important;
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.2em !important;
+        border-radius: 2px !important;
+        transition: all 0.3s ease-in-out !important;
+        box-shadow: 0 10px 30px rgba(201,168,76,0.3) !important;
+        text-decoration: none !important;
+      }
+      .btn-premium-gold:hover {
+        transform: translateY(-2px) scale(1.02) !important;
+        box-shadow: 0 15px 35px rgba(201,168,76,0.6) !important;
+      }
+
+      /* Custom background & text colors */
+      .bg-skin-cream {
+        background-color: #F5EBE1 !important;
+      }
+      .bg-lux-black {
+        background-color: #0A0604 !important;
+      }
+      .text-lux-black {
+        color: #0A0604 !important;
+      }
+      .text-lux-gold {
+        color: #C9A84C !important;
+      }
+      .border-lux-gold {
+        border-color: #C9A84C !important;
+      }
+
+      /* Asymmetrical Portfolio Grid Layout */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        grid-auto-rows: 450px;
+      }
+      @media (max-width: 1024px) {
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 380px;
+        }
+      }
+      @media (max-width: 768px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+          grid-auto-rows: 350px;
+        }
+      }
+      .grid-row-span-2 {
+        grid-row: span 2;
+      }
+      .grid-row-span-1 {
+        grid-row: span 1;
+      }
+
+      /* ── Base navbar ─────────────────────────────────────── */
+      #site-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        transition: background 0.5s ease, box-shadow 0.5s ease, padding 0.4s ease;
+        padding: 0;
+      }
+      #site-header.nav-top {
+        background: transparent;
+        box-shadow: none;
+      }
+      #site-header.nav-scrolled {
+        background: rgba(10, 6, 4, 0.80);
+        backdrop-filter: blur(20px) saturate(1.6);
+        -webkit-backdrop-filter: blur(20px) saturate(1.6);
+        box-shadow: 0 1px 0 rgba(201,168,76,0.15), 0 8px 32px rgba(0,0,0,0.35);
+      }
+
+      /* ── Inner layout ────────────────────────────────────── */
+      .nav-inner {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 0 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 76px;
+        transition: height 0.4s ease;
+      }
+      #site-header.nav-scrolled .nav-inner {
+        height: 64px;
+      }
+
+      /* ── Logo area ───────────────────────────────────────── */
+      .nav-logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+      .nav-logo-wrap img {
+        height: 36px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        transition: filter 0.4s ease, height 0.4s ease;
+      }
+      #site-header.nav-scrolled .nav-logo-wrap img {
+        filter: brightness(0) invert(1);
+        height: 32px;
+      }
+
+      /* ── Gold separator dot ──────────────────────────────── */
+      .nav-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(201,168,76,0.7);
+        flex-shrink: 0;
+      }
+
+      /* ── Desktop nav links ───────────────────────────────── */
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        list-style: none;
+        margin: 0; padding: 0;
+      }
+      .nav-links a {
+        position: relative;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.815rem;
+        font-weight: 500;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.80);
+        text-decoration: none;
+        padding-bottom: 4px;
+        transition: color 0.3s ease;
+      }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px; left: 0;
+        width: 0; height: 1.5px;
+        background: linear-gradient(90deg, #c9a84c, #f5d78e);
+        border-radius: 2px;
+        transition: width 0.35s cubic-bezier(.22,1,.36,1);
+      }
+      .nav-links a:hover,
+      .nav-links a.nav-active {
+        color: #f0d080;
+      }
+      .nav-links a:hover::after,
+      .nav-links a.nav-active::after {
+        width: 100%;
+      }
+
+      /* ── CTA button ──────────────────────────────────────── */
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 26px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.775rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #1a0d00;
+        background: linear-gradient(135deg, #c9a84c 0%, #f5d78e 50%, #c9a84c 100%);
+        background-size: 200% auto;
+        border-radius: 2px;
+        border: none;
+        transition: all 0.4s cubic-bezier(.22,1,.36,1);
+        box-shadow: 0 4px 16px rgba(201,168,76,0.30);
+        position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .nav-cta::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
+        transform: translateX(-100%);
+        transition: transform 0.55s ease;
+      }
+      .nav-cta:hover {
+        background-position: right center;
+        box-shadow: 0 6px 24px rgba(201,168,76,0.50);
+        transform: translateY(-1px);
+        color: #1a0d00;
+      }
+      .nav-cta:hover::before { transform: translateX(100%); }
+
+      /* ── Mobile hamburger ────────────────────────────────── */
+      #nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(255,255,255,0.22);
+        border-radius: 4px;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        transition: border-color 0.3s;
+      }
+      #nav-hamburger:hover { border-color: rgba(201,168,76,0.6); }
+      .ham-line {
+        width: 20px;
+        height: 1.5px;
+        background: rgba(255,255,255,0.85);
+        border-radius: 2px;
+        transition: all 0.35s cubic-bezier(.22,1,.36,1);
+        transform-origin: center;
+      }
+      #nav-hamburger.is-open .ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      #nav-hamburger.is-open .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      #nav-hamburger.is-open .ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+      /* ── Mobile dropdown ─────────────────────────────────── */
+      #mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 99;
+        background: rgba(10,6,4,0.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        pointer-events: none;
+      }
+      #mobile-menu.is-open {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+      .mobile-nav-link {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: rgba(255,255,255,0.85);
+        text-decoration: none;
+        transition: color 0.3s;
+        letter-spacing: 0.04em;
+      }
+      .mobile-nav-link:hover { color: #f0d080; }
+      .mobile-nav-close {
+        position: absolute;
+        top: 24px; right: 24px;
+        width: 44px; height: 44px;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 50%;
+        background: transparent;
+        color: white;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s;
+      }
+      .mobile-nav-close:hover { border-color: #c9a84c; color: #c9a84c; }
+
+      /* ── Gold thin line below navbar (only when scrolled) ── */
+      #nav-gold-line {
+        position: absolute;
+        bottom: 0; left: 0;
+        height: 1px;
+        width: 0%;
+        background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+        transition: width 0.6s ease;
+      }
+      #site-header.nav-scrolled #nav-gold-line { width: 100%; }
+
+      /* Custom animations & glow styles */
+      @keyframes gold-glow {
+        0%, 100% { box-shadow: 0 0 15px rgba(201,168,76,0.3); }
+        50% { box-shadow: 0 0 35px rgba(201,168,76,0.8); }
+      }
+      .cta-glow-btn {
+        animation: gold-glow 3.5s infinite ease-in-out;
+      }
+
+      /* Parallax Image Wrap & hardware acceleration */
+      .parallax-img-wrap {
+        transition: transform 0.1s ease-out;
+        will-change: transform;
+      }
+      .parallax-col {
+        will-change: transform;
+      }
+      .parallax-img {
+        will-change: transform;
+      }
+
+      /* Horizontal Scroll Slider & hardware acceleration */
+      .horizontal-scroll-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+      .horizontal-scroll-wrapper {
+        display: flex;
+        gap: 32px;
+        will-change: transform;
+        padding-bottom: 24px;
+      }
+      .horizontal-card {
+        width: 480px;
+        flex-shrink: 0;
+        background: #14110F !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        padding: 24px !important;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        transition: border-color 0.4s ease, transform 0.4s ease;
+        will-change: transform;
+      }
+      .horizontal-card:hover {
+        border-color: rgba(201, 168, 76, 0.5) !important;
+        transform: translateY(-4px);
+      }
+      @media (max-width: 768px) {
+        .horizontal-card {
+          width: 320px;
+          padding: 16px !important;
+        }
+      }
+      
+      /* Testimonial slider setup */
+      #testimonial-carousel {
+        position: relative;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F5EBE1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #C9A84C;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #B0903B;
+      }
+
+      /* Responsive rules */
+      @media (max-width: 900px) {
+        .nav-links, .nav-cta { display: none !important; }
+        #nav-hamburger { display: flex; }
+      }
+    </style>
+    <!-- Floating Contact Buttons (Call & WhatsApp) -->
+    <script src="assets/js/floating-contact.js" defer></script>
+</head>
+
+<body class="bg-skin-cream text-lux-black font-sans antialiased selection:bg-[#C9A84C] selection:text-white overflow-x-hidden">
+    <!-- Header -->
+    <header id="site-header" class="nav-top">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo-wrap" aria-label="Furnco Interiors home">
+          <img src="images/logo.png" alt="Furnco Interiors logo" id="nav-logo-img">
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav aria-label="Main navigation">
+          <ul class="nav-links" role="list">
+            <li><a href="index.html" id="nav-home">Home</a></li>
+            <li><a href="about.html" id="nav-about">About Us</a></li>
+            <li><a href="portfolio.html" class="nav-active" id="nav-works">Portfolio</a></li>
+            <li><a href="blogs.html" id="nav-blogs">Blogs</a></li>
+            <li><a href="contact.html" id="nav-contact">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right side: CTA + hamburger -->
+        <div style="display:flex;align-items:center;gap:24px;">
+                    <a href="contact.html#map-section" id="nav-store" style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 0.815rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#f0d080';" onmouseout="this.style.color='rgba(255,255,255,0.80)';">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #C9A84C;">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Store
+          </a>
+          <a href="contact.html" class="nav-cta" id="nav-cta-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Start a Project
+          </a>
+          <!-- Hamburger (mobile) -->
+          <button id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+          </button>
+        </div>
+
+      </div>
+      <!-- Animated gold underline (appears on scroll) -->
+      <div id="nav-gold-line" aria-hidden="true"></div>
+    </header>
+
+    <!-- Full-screen mobile menu overlay -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about.html" class="mobile-nav-link">About Us</a>
+      <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+      <a href="blogs.html" class="mobile-nav-link">Blogs</a>
+      <a href="contact.html#map-section" class="mobile-nav-link" style="display: flex; align-items: center; gap: 10px; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #C9A84C;">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Store
+      </a>
+      <a href="contact.html" class="mobile-nav-link">Contact Us</a>
+      <a href="contact.html" class="nav-cta" style="margin-top:16px;">Start a Project</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- SECTION 1: Luxury Hero Section -->
+      <section class="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-lux-black">
+        <!-- Cinematic Background Image -->
+        <div class="absolute inset-0 w-full h-full">
+          <img src="images/hero-luxury.png" alt="Furnco Interiors Luxury Showcase" class="w-full h-full object-cover opacity-85 scale-105" id="hero-bg-img">
+        </div>
+        <!-- High-Contrast Dark Layer Overlay to ensure 100% text readability -->
+        <div class="absolute inset-0 bg-black/65 z-10"></div>
+
+        <!-- Animated Hero Title Container -->
+        <div class="relative max-w-5xl mx-auto px-6 text-center z-20 text-white mt-16">
+          <div class="overflow-hidden mb-4">
+            <span class="inline-block text-[#C9A84C] text-[11px] font-semibold tracking-[0.3em] uppercase opacity-90 hero-anim-up text-lux-gold" style="transform:translateY(100px); color: #C9A84C !important;">
+              FURNCO INTERIORS
+            </span>
+          </div>
+          <div class="overflow-hidden mb-6">
+            <h1 class="font-playfair text-5xl md:text-7xl lg:text-8xl leading-tight hero-anim-up hero-title-white" style="transform:translateY(200px); color: #ffffff !important;">
+              Crafting Spaces That<br><span class="italic hero-text-gold" style="color: #C9A84C !important;">Define Luxury</span>
+            </h1>
+          </div>
+          <div class="overflow-hidden mb-12 max-w-2xl mx-auto">
+            <p class="font-sans text-sm md:text-base hero-subtitle-white font-light leading-relaxed tracking-wide hero-anim-up" style="transform:translateY(150px); color: rgba(255, 255, 255, 0.85) !important;">
+              A curated collection of premium residential and commercial interiors.
+            </p>
+          </div>
+          <div class="overflow-hidden">
+            <div class="hero-anim-up" style="transform:translateY(100px);">
+              <a href="#featured-portfolio" class="btn-premium-gold cta-glow-btn">
+                Explore Projects &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll mouse indicator -->
+        <div class="absolute bottom-10 left-[50%] -translate-x-[50%] z-20 flex flex-col items-center opacity-85">
+          <div class="w-[20px] h-[35px] border border-white/40 rounded-full flex justify-center p-1.5">
+            <div class="w-1.5 h-1.5 bg-[#C9A84C] rounded-full animate-bounce"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Featured Projects Showcase (Masonry Layout) -->
+      <section id="featured-portfolio" class="py-32 bg-skin-cream relative">
+        <div class="max-w-[1400px] mx-auto px-6 sm:px-8">
+          <!-- Section Title -->
+          <div class="mb-20 text-center lg:text-left">
+            <span class="text-lux-gold text-xs font-bold tracking-[0.25em] uppercase block mb-3">CURATED PORTFOLIO</span>
+            <h2 class="font-playfair text-4xl md:text-6xl text-lux-black font-medium leading-tight">Featured Showcase</h2>
+            <div class="w-12 h-0.5 bg-[#C9A84C] mt-6 mx-auto lg:mx-0"></div>
+          </div>
+
+          <!-- Large Masonry / Editorial Grid -->
+          <div class="portfolio-grid">
+            
+            <!-- Card 1: Modular Kitchen (Double Height) -->
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_user_1.jpg" alt="Modular Kitchen Showcase" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Modular Kitchen</span>
+                <h3 class="font-playfair text-2xl md:text-3xl text-white font-medium mb-3">Emerald Flute Kitchen</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">An elegant bespoke kitchen featuring mint green panels and fluted cabinetry.</p>
+              </div>
+            </div>
+
+            <!-- Card 2: Contemporary Bedroom -->
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_user_2.jpg" alt="Contemporary Bedroom" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Contemporary Bedroom</span>
+                <h3 class="font-playfair text-xl md:text-2xl text-white font-medium mb-2">Peach Glow Sanctuary</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">Warm tones with a custom upholstered headboard and slide-in wardrobe detail.</p>
+              </div>
+            </div>
+
+            <!-- Card 3: Luxury Villa (Double Height) -->
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_gen_1.png" alt="Luxury Villa Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Luxury Villa</span>
+                <h3 class="font-playfair text-2xl md:text-3xl text-white font-medium mb-3">Prestige Residency</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">High-end architecture showcasing massive floor-to-ceiling windows and marble elements.</p>
+              </div>
+            </div>
+
+            <!-- Card 4: Premium Living Room -->
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_gen_2.png" alt="Premium Living Room" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Premium Living Room</span>
+                <h3 class="font-playfair text-xl md:text-2xl text-white font-medium mb-2">Oasis Living Room</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">Plush velvet layout with modern custom fireplace accents and warm details.</p>
+              </div>
+            </div>
+
+            <!-- Card 5: Executive Office (Double Height) -->
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_gen_5.png" alt="Executive Office" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Executive Office</span>
+                <h3 class="font-playfair text-2xl md:text-3xl text-white font-medium mb-3">Corporate Headquarters</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">High-end executive cabin with luxurious wood paneling and architectural framing.</p>
+              </div>
+            </div>
+
+            <!-- Card 6: Modern Apartment -->
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_user_4.jpg" alt="Modern Apartment" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Modern Apartment</span>
+                <h3 class="font-playfair text-xl md:text-2xl text-white font-medium mb-2">Urban Minimalist Hall</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">Bespoke television wall with premium lacquer panels and herringbone floor structure.</p>
+              </div>
+            </div>
+
+            <!-- Card 7: Luxury Wardrobe (Double Height) -->
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_user_3.jpg" alt="Luxury Wardrobe" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Contemporary Bedroom</span>
+                <h3 class="font-playfair text-2xl md:text-3xl text-white font-medium mb-3">Chic Wardrobe Closet</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">Glossy white panels featuring a mint-accented column with modern circular showcase frames.</p>
+              </div>
+            </div>
+
+            <!-- Card 8: Modular Kitchen -->
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_gen_3.png" alt="Premium Kitchen Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Modular Kitchen</span>
+                <h3 class="font-playfair text-xl md:text-2xl text-white font-medium mb-2">Marble Monolith Kitchen</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">Dark matte elements coupled with custom marble waterfall countertops.</p>
+              </div>
+            </div>
+
+            <!-- Card 9: Contemporary Bedroom (Double Height) -->
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_gen_4.png" alt="Contemporary Bedroom Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Contemporary Bedroom</span>
+                <h3 class="font-playfair text-2xl md:text-3xl text-white font-medium mb-3">Amber Wood Chamber</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">Luxury Master bedroom accented with custom wood paneling and warm indirect LED outlines.</p>
+              </div>
+            </div>
+
+            <!-- Card 10: Executive Office -->
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+              <img src="images/portfolio_user_5.jpg" alt="Executive Workspace Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
+                <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Executive Office</span>
+                <h3 class="font-playfair text-xl md:text-2xl text-white font-medium mb-2">Bespoke study chamber</h3>
+                <p class="text-xs text-gray-300 font-light tracking-wide max-w-xs">Minimal desk coupled with built-in fluted cupboards and golden brass finishes.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- SECTION 4: Parallax Image Gallery -->
+      <section class="parallax-gallery-container bg-skin-cream py-32 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 mb-20 text-center">
+          <span class="text-lux-gold text-xs font-bold tracking-[0.25em] uppercase block mb-3">CINEMATIC PERSPECTIVE</span>
+          <h2 class="font-playfair text-4xl md:text-6xl text-lux-black font-medium leading-tight">Visual Parallax Gallery</h2>
+          <p class="text-xs text-gray-500 font-light mt-4 tracking-wider uppercase">Move your mouse to interact and shifts layers dynamically.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative z-10">
+          
+          <!-- Column 1 -->
+          <div class="parallax-col flex flex-col gap-8 md:gap-12" data-speed="0.8">
+            <div class="parallax-img-wrap overflow-hidden rounded-sm shadow-xl">
+              <img src="images/portfolio_gen_1.png" alt="Villa Exterior Details" class="parallax-img w-full h-[300px] md:h-[420px] object-cover scale-110">
+            </div>
+            <div class="parallax-img-wrap overflow-hidden rounded-sm shadow-xl">
+              <img src="images/portfolio_user_1.jpg" alt="Kitchen Space Detail" class="parallax-img w-full h-[200px] md:h-[300px] object-cover scale-110">
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="parallax-col flex flex-col gap-8 md:gap-12 mt-0 md:mt-16" data-speed="1.2">
+            <div class="parallax-img-wrap overflow-hidden rounded-sm shadow-xl">
+              <img src="images/portfolio_gen_2.png" alt="Living Room Detail" class="parallax-img w-full h-[250px] md:h-[350px] object-cover scale-110">
+            </div>
+            <div class="parallax-img-wrap overflow-hidden rounded-sm shadow-xl">
+              <img src="images/portfolio_gen_4.png" alt="Master Bedroom Detail" class="parallax-img w-full h-[300px] md:h-[450px] object-cover scale-110">
+            </div>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="parallax-col flex flex-col gap-8 md:gap-12" data-speed="0.6">
+            <div class="parallax-img-wrap overflow-hidden rounded-sm shadow-xl">
+              <img src="images/portfolio_gen_5.png" alt="Workspace Details" class="parallax-img w-full h-[300px] md:h-[450px] object-cover scale-110">
+            </div>
+            <div class="parallax-img-wrap overflow-hidden rounded-sm shadow-xl">
+              <img src="images/portfolio_user_2.jpg" alt="Bed Layout Detail" class="parallax-img w-full h-[200px] md:h-[300px] object-cover scale-110">
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <!-- SECTION 6: Project Statistics -->
+      <section class="py-24 bg-skin-cream border-b border-[#0A0604]/5">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            
+            <!-- Stat 1 -->
+            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+              <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
+                <span class="stat-number" data-target="50">0</span>+
+              </span>
+              <span class="text-xs font-bold tracking-[0.2em] text-[#C9A84C] uppercase text-lux-gold" style="color:#C9A84C !important;">Completed Projects</span>
+            </div>
+
+            <!-- Stat 2 -->
+            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+              <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
+                <span class="stat-number" data-target="100">0</span>%
+              </span>
+              <span class="text-xs font-bold tracking-[0.2em] text-[#C9A84C] uppercase text-lux-gold" style="color:#C9A84C !important;">Client Satisfaction</span>
+            </div>
+
+            <!-- Stat 3 -->
+            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+              <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
+                <span class="stat-number" data-target="10">0</span>+
+              </span>
+              <span class="text-xs font-bold tracking-[0.2em] text-[#C9A84C] uppercase text-lux-gold" style="color:#C9A84C !important;">Years Experience</span>
+            </div>
+
+            <!-- Stat 4 -->
+            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+              <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
+                <span class="stat-number" data-target="5">0</span>+
+              </span>
+              <span class="text-xs font-bold tracking-[0.2em] text-[#C9A84C] uppercase text-lux-gold" style="color:#C9A84C !important;">Cities Served</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: Client Testimonials -->
+      <section class="py-32 bg-skin-cream overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 mb-20 text-center">
+          <span class="text-lux-gold text-xs font-bold tracking-[0.25em] uppercase block mb-3">CLIENT VERDICTS</span>
+          <h2 class="font-playfair text-4xl md:text-6xl text-lux-black font-medium leading-tight">Testimonials</h2>
+          <div class="w-12 h-0.5 bg-[#C9A84C] mt-6 mx-auto"></div>
+        </div>
+
+        <!-- Carousel Wrapper -->
+        <div class="max-w-5xl mx-auto px-6 relative">
+          
+          <!-- Testimonials Slider Container -->
+          <div class="relative overflow-hidden h-[320px] md:h-[220px]" id="testimonial-carousel">
+            
+            <!-- Slide 1 -->
+            <div class="absolute inset-0 flex flex-col md:flex-row items-center gap-8 testimonial-slide transition-all duration-700 opacity-100 transform scale-100 z-10">
+              <img src="images/client_portrait_1.png" alt="Vikram Reddy" class="w-20 h-20 rounded-full object-cover border border-[#C9A84C]/40">
+              <div>
+                <p class="font-playfair text-lg md:text-xl text-lux-black italic font-light leading-relaxed mb-4">
+                  "FURNCO turned our empty Hyderabad villa into an architectural masterpiece. The level of bespoke detailing and execution rigour was world-class."
+                </p>
+                <div class="text-xs font-sans tracking-widest uppercase text-gray-500 font-semibold">
+                  Vikram Reddy <span class="text-[#C9A84C]">&bull;</span> Luxury Villa, Hyderabad
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="absolute inset-0 flex flex-col md:flex-row items-center gap-8 testimonial-slide transition-all duration-700 opacity-0 transform scale-95 pointer-events-none z-0">
+              <img src="images/client_portrait_2.png" alt="Ananya Sharma" class="w-20 h-20 rounded-full object-cover border border-[#C9A84C]/40">
+              <div>
+                <p class="font-playfair text-lg md:text-xl text-lux-black italic font-light leading-relaxed mb-4">
+                  "Their Apple-level minimalism and perfect integration of soft skin tones and flutes created a serene residential sanctuary. Highly recommended."
+                </p>
+                <div class="text-xs font-sans tracking-widest uppercase text-gray-500 font-semibold">
+                  Ananya Sharma <span class="text-[#C9A84C]">&bull;</span> Modern Apartment, Bengaluru
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="absolute inset-0 flex flex-col md:flex-row items-center gap-8 testimonial-slide transition-all duration-700 opacity-0 transform scale-95 pointer-events-none z-0">
+              <img src="images/client_portrait_3.png" alt="Karan Malhotra" class="w-20 h-20 rounded-full object-cover border border-[#C9A84C]/40">
+              <div>
+                <p class="font-playfair text-lg md:text-xl text-lux-black italic font-light leading-relaxed mb-4">
+                  "The executive boardroom and corporate workspace they designed in Chennai perfectly balances high-posture corporate prestige with functional comfort."
+                </p>
+                <div class="text-xs font-sans tracking-widest uppercase text-gray-500 font-semibold">
+                  Karan Malhotra <span class="text-[#C9A84C]">&bull;</span> Corporate Office, Chennai
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="flex justify-center gap-6 mt-8">
+            <button id="carousel-prev" class="w-10 h-10 rounded-full border border-[#0A0604]/20 flex items-center justify-center hover:bg-[#C9A84C] hover:border-transparent hover:text-white transition-colors">
+              &larr;
+            </button>
+            <button id="carousel-next" class="w-10 h-10 rounded-full border border-[#0A0604]/20 flex items-center justify-center hover:bg-[#C9A84C] hover:border-transparent hover:text-white transition-colors">
+              &rarr;
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 8: Design Process (Timeline Layout) -->
+      <section class="py-32 bg-skin-cream border-t border-[#0A0604]/5 relative timeline-section">
+        <div class="max-w-7xl mx-auto px-6 mb-20 text-center">
+          <span class="text-lux-gold text-xs font-bold tracking-[0.25em] uppercase block mb-3">OUR EXECUTION FRAMEWORK</span>
+          <h2 class="font-playfair text-4xl md:text-6xl text-lux-black font-medium leading-tight">Design Process</h2>
+          <div class="w-12 h-0.5 bg-[#C9A84C] mt-6 mx-auto"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative timeline-container py-12">
+          
+          <!-- Animated connecting line -->
+          <div class="absolute left-6 md:left-[50%] top-0 bottom-0 w-0.5 bg-[#0A0604]/10">
+            <div class="timeline-progress-line absolute top-0 left-0 w-full bg-[#C9A84C] origin-top scale-y-0" style="height: 100%;"></div>
+          </div>
+
+          <!-- Timeline Item 1 -->
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="w-full md:w-[45%] text-left md:text-right pr-0 md:pr-12 mb-4 md:mb-0">
+              <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">01</span>
+              <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Discovery</h4>
+              <p class="text-xs text-gray-500 font-light leading-relaxed max-w-sm md:ml-auto">Understanding your lifestyle vision, site challenges, luxury preferences, and spatial aspirations.</p>
+            </div>
+            <div class="absolute left-6 md:left-[50%] -translate-x-[50%] w-3 h-3 rounded-full bg-[#C9A84C] border-4 border-[#F5EBE1] shadow-md"></div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+            <div class="absolute left-6 md:left-[50%] -translate-x-[50%] w-3 h-3 rounded-full bg-[#C9A84C] border-4 border-[#F5EBE1] shadow-md"></div>
+            <div class="w-full md:w-[45%] text-left pl-0 md:pl-12">
+              <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">02</span>
+              <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Planning</h4>
+              <p class="text-xs text-gray-500 font-light leading-relaxed max-w-sm">Drafting spatial floor plans, mood boards, and curating customized high-end material configurations.</p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="w-full md:w-[45%] text-left md:text-right pr-0 md:pr-12 mb-4 md:mb-0">
+              <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">03</span>
+              <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Design</h4>
+              <p class="text-xs text-gray-500 font-light leading-relaxed max-w-sm md:ml-auto">Creating photorealistic 3D visual models and high-fidelity technical cabinetry prints.</p>
+            </div>
+            <div class="absolute left-6 md:left-[50%] -translate-x-[50%] w-3 h-3 rounded-full bg-[#C9A84C] border-4 border-[#F5EBE1] shadow-md"></div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+            <div class="absolute left-6 md:left-[50%] -translate-x-[50%] w-3 h-3 rounded-full bg-[#C9A84C] border-4 border-[#F5EBE1] shadow-md"></div>
+            <div class="w-full md:w-[45%] text-left pl-0 md:pl-12">
+              <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">04</span>
+              <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Execution</h4>
+              <p class="text-xs text-gray-500 font-light leading-relaxed max-w-sm">Precision manufacturing of custom closets and wardrobes, on-site framing, and strict supervision.</p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5 -->
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="w-full md:w-[45%] text-left md:text-right pr-0 md:pr-12 mb-4 md:mb-0">
+              <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">05</span>
+              <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Delivery</h4>
+              <p class="text-xs text-gray-500 font-light leading-relaxed max-w-sm md:ml-auto">Final styling and clean handover of your luxury interior ready to define your life standards.</p>
+            </div>
+            <div class="absolute left-6 md:left-[50%] -translate-x-[50%] w-3 h-3 rounded-full bg-[#C9A84C] border-4 border-[#F5EBE1] shadow-md"></div>
+            <div class="w-full md:w-[45%] hidden md:block"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 9: Premium CTA -->
+      <section class="relative py-40 overflow-hidden bg-lux-black text-white text-center flex flex-col justify-center items-center">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-[#0A0604]/90 z-10"></div>
+        <!-- BG graphic asset -->
+        <div class="absolute inset-0 opacity-20 z-0">
+          <img src="images/hero-slide4.png" alt="Bespoke furniture setup background" class="w-full h-full object-cover">
+        </div>
+
+        <div class="relative z-20 max-w-4xl mx-auto px-6">
+          <span class="text-lux-gold text-xs font-bold tracking-[0.3em] uppercase block mb-4" style="color:#C9A84C !important;">LET'S COLLABORATE</span>
+          <h2 class="font-playfair text-4xl md:text-7xl font-medium leading-tight mb-8 text-white" style="color:#ffffff !important;">
+            Let's Create Your<br><span class="italic text-lux-gold" style="color:#C9A84C !important;">Dream Space</span>
+          </h2>
+          <p class="text-sm md:text-base text-gray-400 font-light max-w-lg mx-auto mb-12 leading-relaxed">
+            Partner with FURNCO INTERIORS to construct spaces that define true prestige, craftsmanship, and structural luxury.
+          </p>
+          <a href="contact.html" class="btn-premium-gold cta-glow-btn">
+            Start Your Project &rarr;
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (Same as other pages) -->
+    <footer class="bg-primary text-gray-300 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-6">
+                    <img src="images/logo-footer.png" alt="Furnco Interiors Logo" class="h-8" loading="lazy">
+                    <p class="font-light text-gray-400">We provide a full range of interior design and architectural design services focused on bespoke luxury.</p>
+                    <div class="flex gap-3 pt-2">
+                        <a href="https://www.facebook.com/profile.php?id=100086378983218&ref=NONE_xav_ig_profile_page_web#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all" aria-label="Facebook">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/furnco.india/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all" aria-label="Instagram">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-serif text-xl mb-6">Quick Links</h4>
+                    <ul class="space-y-3 font-light">
+                        <li><a href="about.html" class="hover:text-secondary transition-colors">About Us</a></li>
+                        <li><a href="portfolio.html" class="hover:text-secondary transition-colors">Portfolio</a></li>
+            <li><a href="blogs.html" id="nav-blogs">Blogs</a></li>
+                        <li><a href="contact.html" class="hover:text-secondary transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-serif text-xl mb-6">Contact</h4>
+                    <ul class="space-y-4 font-light text-sm">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-3 text-secondary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span>4JCQ+846, Pal Rd, Srinivasa Nagar, Bengaluru, Sathanur, Karnataka 560064</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            <a href="mailto:support@furncointeriors.com" class="hover:text-secondary transition-colors">support@furncointeriors.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-3 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                            <span>(+91) 96209 74224</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-serif text-xl mb-6">Latest Projects</h4>
+                    <ul class="space-y-3 font-light">
+                        <li><a href="portfolio.html" class="hover:text-secondary transition-colors">Stylish Family Appartment</a></li>
+                        <li><a href="portfolio.html" class="hover:text-secondary transition-colors">Modern Villa</a></li>
+                        <li><a href="portfolio.html" class="hover:text-secondary transition-colors">Farm House</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-light">
+                <p>&copy; 2026 Furnco Interiors. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP CDN scripts loaded here -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+    (function(){
+      // ── Navbar Behaviours ──
+      var header   = document.getElementById('site-header');
+      var burger   = document.getElementById('nav-hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var closeBtn = document.getElementById('mobile-nav-close');
+
+      function onScroll(){
+        if(window.scrollY > 60){
+          header.classList.remove('nav-top');
+          header.classList.add('nav-scrolled');
+        } else {
+          header.classList.remove('nav-scrolled');
+          header.classList.add('nav-top');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      function openMenu(){
+        mobileMenu.style.display = 'flex';
+        requestAnimationFrame(function(){
+          mobileMenu.classList.add('is-open');
+        });
+        burger.classList.add('is-open');
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu(){
+        mobileMenu.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        setTimeout(function(){ mobileMenu.style.display = 'none'; }, 400);
+      }
+
+      if(burger) burger.addEventListener('click', function(){
+        mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+      if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+      // ── Register GSAP ScrollTrigger ──
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ── Section 1: Hero Animations ──
+      gsap.to('.hero-anim-up', {
+        y: 0,
+        opacity: 1,
+        duration: 1.4,
+        stagger: 0.15,
+        ease: "power4.out",
+        delay: 0.2
+      });
+
+      gsap.to('#hero-bg-img', {
+        scale: 1,
+        duration: 2.2,
+        ease: "power2.out"
+      });
+
+      // ── Section 2 & 6 & 8: Scroll Revelations ──
+      const reveals = document.querySelectorAll('.scroll-reveal-item');
+      reveals.forEach((el) => {
+        gsap.to(el, {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        });
+      });
+
+
+
+      // ── Section 4: Parallax Mouse Interaction ──
+      const gallery = document.querySelector('.parallax-gallery-container');
+      if (gallery) {
+        gallery.addEventListener('mousemove', (e) => {
+          const { clientX, clientY } = e;
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          const moveX = (clientX - width / 2) / (width / 2);
+          const moveY = (clientY - height / 2) / (height / 2);
+
+          document.querySelectorAll('.parallax-img-wrap').forEach((item, index) => {
+            const factor = (index + 1) * 7;
+            gsap.to(item, {
+              x: moveX * factor,
+              y: moveY * factor,
+              duration: 1.2,
+              ease: "power2.out"
+            });
+          });
+        });
+        
+        // Scroll-driven Parallax speed columns
+        document.querySelectorAll('.parallax-col').forEach(col => {
+          const speed = parseFloat(col.getAttribute('data-speed')) || 1;
+          gsap.fromTo(col, 
+            { y: 60 * speed },
+            {
+              y: -60 * speed,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".parallax-gallery-container",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            }
+          );
+        });
+      }
+
+
+      // ── Section 6: Counting Stat Numbers ──
+      document.querySelectorAll('.stat-number').forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        gsap.fromTo(stat, 
+          { innerText: 0 },
+          {
+            innerText: target,
+            duration: 2.2,
+            snap: { innerText: 1 },
+            scrollTrigger: {
+              trigger: stat,
+              start: "top 85%",
+              toggleActions: "play none none none"
+            }
+          }
+        );
+      });
+
+      // ── Section 7: Auto sliding carousel ──
+      const slides = document.querySelectorAll('.testimonial-slide');
+      let currentIndex = 0;
+      let intervalTimer;
+
+      function showTestimonial(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove('opacity-100', 'scale-100', 'z-10');
+          slide.classList.add('opacity-0', 'scale-95', 'pointer-events-none', 'z-0');
+        });
+        slides[index].classList.remove('opacity-0', 'scale-95', 'pointer-events-none', 'z-0');
+        slides[index].classList.add('opacity-100', 'scale-100', 'z-10');
+      }
+
+      function nextTestimonial() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showTestimonial(currentIndex);
+      }
+      function prevTestimonial() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showTestimonial(currentIndex);
+      }
+
+      function startInterval() {
+        clearInterval(intervalTimer);
+        intervalTimer = setInterval(nextTestimonial, 6000);
+      }
+
+      const btnNext = document.getElementById('carousel-next');
+      const btnPrev = document.getElementById('carousel-prev');
+
+      if (btnNext && btnPrev) {
+        btnNext.addEventListener('click', function(){
+          nextTestimonial();
+          startInterval();
+        });
+        btnPrev.addEventListener('click', function(){
+          prevTestimonial();
+          startInterval();
+        });
+      }
+      startInterval();
+
+      // ── Section 8: Timeline progress line drawing ──
+      gsap.to('.timeline-progress-line', {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.timeline-container',
+          start: "top 40%",
+          end: "bottom 60%",
+          scrub: true
+        }
+      });
+
+    })();
+    </script>
+</body>
+</html>
