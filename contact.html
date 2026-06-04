@@ -223,11 +223,6 @@
         max-width: 800px;
         margin: 0 auto;
         padding: 0 24px;
-        animation: hero-fade-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-      }
-      @keyframes hero-fade-in {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
       }
       .hero-badge {
         display: inline-flex;
@@ -660,17 +655,17 @@
     <!-- Page Hero -->
     <section class="contact-hero">
       <div class="contact-hero-content">
-        <div class="hero-badge">
+        <div class="hero-badge contact-badge" style="opacity: 0; transform: translateY(20px);">
           <span></span>
           Connect With Us
         </div>
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.8rem);color:#0A0604;font-weight:600;margin:0 0 20px;line-height:1.15;letter-spacing:-0.01em;">
+        <h1 class="contact-title" style="opacity: 0; transform: translateY(35px); font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.8rem);color:#0A0604;font-weight:600;margin:0 0 20px;line-height:1.15;letter-spacing:-0.01em;">
           Let's Create Something <em style="color:#C9A84C;font-style:italic;">Extraordinary</em>
         </h1>
-        <p style="font-family:'Inter',sans-serif;font-size:1.05rem;color:rgba(10,6,4,0.7);font-weight:300;max-width:560px;margin:0 auto;line-height:1.75;letter-spacing:0.01em;">
+        <p class="contact-desc" style="opacity: 0; transform: translateY(20px); font-family:'Inter',sans-serif;font-size:1.05rem;color:rgba(10,6,4,0.7);font-weight:300;max-width:560px;margin:0 auto;line-height:1.75;letter-spacing:0.01em;">
           Step into a world of curated elegance. From conceptual drafting to final styling, our team designs luxury environments tailored to your lifestyle.
         </p>
-        <div style="width:60px;height:1.5px;background:linear-gradient(90deg,#c9a84c,#f5d78e,#c9a84c);margin:32px auto 0;"></div>
+        <div class="contact-divider" style="width: 0px; height:1.5px;background:linear-gradient(90deg,#c9a84c,#f5d78e,#c9a84c);margin:32px auto 0;"></div>
       </div>
     </section>
 
@@ -1178,6 +1173,27 @@
         });
       }
     })();
+    </script>
+
+    <!-- GSAP CDN scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+      if (typeof gsap !== 'undefined') {
+        var tl = gsap.timeline();
+        tl.to('.contact-badge', { opacity: 1, y: 0, duration: 1.0, ease: "power4.out" })
+          .to('.contact-title', { opacity: 1, y: 0, duration: 1.2, ease: "power4.out" }, "-=0.75")
+          .to('.contact-desc', { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, "-=0.85")
+          .to('.contact-divider', { width: "60px", duration: 1.2, ease: "power2.out" }, "-=0.65");
+      } else {
+        // Fallback
+        document.querySelectorAll('.contact-badge, .contact-title, .contact-desc').forEach(function(el){
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        document.querySelectorAll('.contact-divider').forEach(function(el){
+          el.style.width = '60px';
+        });
+      }
     </script>
 </body>
 </html>
