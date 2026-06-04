@@ -179,18 +179,20 @@
         padding: 0;
       }
 
-      /* Transparent state (at top of page / over hero) */
+      /* Always dark — same style as all other pages */
       #site-header.nav-top {
-        background: transparent;
-        box-shadow: none;
+        background: rgba(10, 6, 4, 0.95);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
       }
 
-      /* Scrolled state — frosted glass */
+      /* Scrolled state — same dark */
       #site-header.nav-scrolled {
-        background: rgba(10, 6, 4, 0.80);
-        backdrop-filter: blur(20px) saturate(1.6);
-        -webkit-backdrop-filter: blur(20px) saturate(1.6);
-        box-shadow: 0 1px 0 rgba(201,168,76,0.15), 0 8px 32px rgba(0,0,0,0.35);
+        background: rgba(10, 6, 4, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
       }
 
       /* ── Inner layout ────────────────────────────────────── */
