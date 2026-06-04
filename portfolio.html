@@ -422,6 +422,14 @@
         .nav-links, .nav-cta { display: none !important; }
         #nav-hamburger { display: flex; }
       }
+
+      /* Force reveal scroll-reveal elements on mobile devices (under 768px) */
+      @media (max-width: 767px) {
+        .scroll-reveal-item, .animate-card {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
     </style>
     <!-- Floating Contact Buttons (Call & WhatsApp) -->
     <script src="assets/js/floating-contact.js" defer></script>
@@ -1057,39 +1065,49 @@
       if(closeBtn) closeBtn.addEventListener('click', closeMenu);
 
       // ── Register GSAP ScrollTrigger ──
-      gsap.registerPlugin(ScrollTrigger);
+      if (typeof gsap !== 'undefined') {
+        if (typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+        }
 
-      // ── Section 1: Hero Animations ──
-      gsap.to('.hero-anim-up', {
-        y: 0,
-        opacity: 1,
-        duration: 1.4,
-        stagger: 0.15,
-        ease: "power4.out",
-        delay: 0.2
-      });
-
-      gsap.to('#hero-bg-img', {
-        scale: 1,
-        duration: 2.2,
-        ease: "power2.out"
-      });
-
-      // ── Section 2 & 6 & 8: Scroll Revelations ──
-      const reveals = document.querySelectorAll('.scroll-reveal-item');
-      reveals.forEach((el) => {
-        gsap.to(el, {
+        // ── Section 1: Hero Animations ──
+        gsap.to('.hero-anim-up', {
           y: 0,
           opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
+          duration: 1.4,
+          stagger: 0.15,
+          ease: "power4.out",
+          delay: 0.2
         });
-      });
+
+        gsap.to('#hero-bg-img', {
+          scale: 1,
+          duration: 2.2,
+          ease: "power2.out"
+        });
+
+        // ── Section 2 & 6 & 8: Scroll Revelations ──
+        const reveals = document.querySelectorAll('.scroll-reveal-item');
+        reveals.forEach((el) => {
+          gsap.to(el, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none"
+            }
+          });
+        });
+      } else {
+        // Fallback reveals if GSAP is blocked/offline
+        document.querySelectorAll('.scroll-reveal-item, .hero-anim-up').forEach(function(el){
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
 
 
 
@@ -1196,16 +1214,18 @@
       startInterval();
 
       // ── Section 8: Timeline progress line drawing ──
-      gsap.to('.timeline-progress-line', {
-        scaleY: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: '.timeline-container',
-          start: "top 40%",
-          end: "bottom 60%",
-          scrub: true
-        }
-      });
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.to('.timeline-progress-line', {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: '.timeline-container',
+            start: "top 40%",
+            end: "bottom 60%",
+            scrub: true
+          }
+        });
+      }
 
     })();
     </script>
