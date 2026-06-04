@@ -179,9 +179,38 @@
         display: flex; align-items: center; justify-content: center;
       }
       .mobile-nav-close:hover { color: #C9A84C; border-color: rgba(201,168,76,0.6); }
+      /* Mobile Store Button (gold accented, only visible on mobile) */
+      #mobile-store-btn {
+        display: none;
+        align-items: center;
+        gap: 5px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #C9A84C;
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 7px 13px;
+        border: 1px solid rgba(201,168,76,0.45);
+        border-radius: 3px;
+        background: rgba(201,168,76,0.06);
+        transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      }
+      #mobile-store-btn svg { color: #C9A84C; flex-shrink: 0; }
+      #mobile-store-btn:hover,
+      #mobile-store-btn:active {
+        background: rgba(201,168,76,0.18);
+        border-color: rgba(201,168,76,0.8);
+        color: #f0d080;
+      }
+
       @media (max-width: 900px) {
         .nav-links, .nav-cta, #nav-store, #site-header nav { display: none !important; }
         #nav-hamburger { display: flex !important; }
+        #mobile-store-btn { display: flex !important; }
         .nav-inner { padding: 0 16px; }
       }
 
@@ -626,6 +655,11 @@
           <a href="contact.html" class="nav-cta" id="nav-cta-btn">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             Start a Project
+          </a>
+          <!-- Mobile Store button (visible only on mobile) -->
+          <a href="contact.html#map-section" id="mobile-store-btn" aria-label="Find our Store">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Store
           </a>
           <!-- Hamburger (mobile) -->
           <button id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
