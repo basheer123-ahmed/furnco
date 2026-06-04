@@ -2797,3 +2797,11 @@ img, video, iframe {
     padding: 120px 0 60px !important;
   }
 }
+
+/* Force reveal elements on mobile/tablet viewports to bypass GSAP blocking */
+@media (max-width: 1024px) {
+  .scroll-reveal-item, .animate-card, [style*="opacity:0"], [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

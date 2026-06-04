@@ -423,9 +423,9 @@
         #nav-hamburger { display: flex; }
       }
 
-      /* Force reveal scroll-reveal elements on mobile devices (under 768px) */
-      @media (max-width: 767px) {
-        .scroll-reveal-item, .animate-card {
+      /* Force reveal scroll-reveal elements on mobile devices & tablets (under 1024px) */
+      @media (max-width: 1024px) {
+        .scroll-reveal-item, .animate-card, [style*="opacity:0"], [style*="opacity: 0"] {
           opacity: 1 !important;
           transform: none !important;
         }
