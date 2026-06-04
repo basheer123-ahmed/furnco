@@ -104,7 +104,18 @@
       @media (max-width: 768px) {
         .portfolio-grid {
           grid-template-columns: 1fr;
-          grid-auto-rows: 350px;
+          grid-auto-rows: 320px;
+          gap: 20px;
+        }
+        /* On mobile single-column, reset double-height spans to normal */
+        .portfolio-grid .grid-row-span-2 {
+          grid-row: span 1 !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .portfolio-grid {
+          grid-auto-rows: 260px;
+          gap: 16px;
         }
       }
       .grid-row-span-2 {
@@ -112,6 +123,17 @@
       }
       .grid-row-span-1 {
         grid-row: span 1;
+      }
+
+      /* ── Scroll-reveal animation initial state (CSS class, not inline) ─ */
+      .anim-hidden {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .anim-hidden.anim-visible {
+        opacity: 1 !important;
+        transform: none !important;
       }
 
       /* ── Base navbar ─────────────────────────────────────── */
@@ -428,9 +450,12 @@
         .nav-inner { padding: 0 16px; }
       }
 
-      /* Force reveal scroll-reveal elements on mobile devices & tablets (under 1024px) */
+      /* Force reveal scroll-reveal elements on mobile/tablet (under 1024px)
+         The !important here beats the .anim-hidden CSS class (not inline styles) */
       @media (max-width: 1024px) {
-        .scroll-reveal-item, .animate-card, [style*="opacity:0"], [style*="opacity: 0"] {
+        .scroll-reveal-item,
+        .animate-card,
+        .anim-hidden {
           opacity: 1 !important;
           transform: none !important;
         }
@@ -564,7 +589,7 @@
           <div class="portfolio-grid">
             
             <!-- Card 1: Modular Kitchen (Double Height) -->
-            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_user_1.jpg" alt="Modular Kitchen Showcase" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Modular Kitchen</span>
@@ -574,7 +599,7 @@
             </div>
 
             <!-- Card 2: Contemporary Bedroom -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_user_2.jpg" alt="Contemporary Bedroom" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Contemporary Bedroom</span>
@@ -584,7 +609,7 @@
             </div>
 
             <!-- Card 3: Luxury Villa (Double Height) -->
-            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_gen_1.png" alt="Luxury Villa Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Luxury Villa</span>
@@ -594,7 +619,7 @@
             </div>
 
             <!-- Card 4: Premium Living Room -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_gen_2.png" alt="Premium Living Room" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Premium Living Room</span>
@@ -604,7 +629,7 @@
             </div>
 
             <!-- Card 5: Executive Office (Double Height) -->
-            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_gen_5.png" alt="Executive Office" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Executive Office</span>
@@ -614,7 +639,7 @@
             </div>
 
             <!-- Card 6: Modern Apartment -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_user_4.jpg" alt="Modern Apartment" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Modern Apartment</span>
@@ -624,7 +649,7 @@
             </div>
 
             <!-- Card 7: Luxury Wardrobe (Double Height) -->
-            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_user_3.jpg" alt="Luxury Wardrobe" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Contemporary Bedroom</span>
@@ -634,7 +659,7 @@
             </div>
 
             <!-- Card 8: Modular Kitchen -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_gen_3.png" alt="Premium Kitchen Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Modular Kitchen</span>
@@ -644,7 +669,7 @@
             </div>
 
             <!-- Card 9: Contemporary Bedroom (Double Height) -->
-            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_gen_4.png" alt="Contemporary Bedroom Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Contemporary Bedroom</span>
@@ -654,7 +679,7 @@
             </div>
 
             <!-- Card 10: Executive Office -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/portfolio_user_5.jpg" alt="Executive Workspace Design" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Executive Office</span>
@@ -664,7 +689,7 @@
             </div>
 
             <!-- Card 11: Trident HQ Facade (Double Height) -->
-            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/trident_machinery_facade.png" alt="Trident Machinery Storefront" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Commercial / Storefront</span>
@@ -674,7 +699,7 @@
             </div>
 
             <!-- Card 12: Trident Office (Single Height) -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/trident_machinery_office.png" alt="Trident Executive Office" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Executive Office</span>
@@ -684,7 +709,7 @@
             </div>
 
             <!-- Card 13: Trident Reception Area (Double Height) -->
-            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-2 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/trident_machinery_reception.png" alt="Trident Reception Area" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-8">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Reception & Workspace</span>
@@ -694,7 +719,7 @@
             </div>
 
             <!-- Card 14: Trident Coolers (Single Height) -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/trident_machinery_coolers.png" alt="Specialized Machinery Coolers" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Display Fixtures</span>
@@ -704,7 +729,7 @@
             </div>
 
             <!-- Card 15: Trident Assembly Desk (Single Height) -->
-            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card" style="opacity:0;transform:translateY(50px);">
+            <div class="grid-row-span-1 relative group overflow-hidden rounded-sm shadow-xl bg-white scroll-reveal-item animate-card">
               <img src="images/trident_machinery_assembly.png" alt="Conference Desk Assembly" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0604]/90 via-[#0A0604]/20 to-transparent opacity-75 group-hover:opacity-90 group-hover:backdrop-blur-[3px] transition-all duration-500 flex flex-col justify-end p-6">
                 <span class="text-[#C9A84C] text-[10px] font-bold tracking-[0.2em] uppercase mb-2">Fine Craftsmanship</span>
@@ -770,7 +795,7 @@
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
             
             <!-- Stat 1 -->
-            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="scroll-reveal-item">
               <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
                 <span class="stat-number" data-target="50">0</span>+
               </span>
@@ -778,7 +803,7 @@
             </div>
 
             <!-- Stat 2 -->
-            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="scroll-reveal-item">
               <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
                 <span class="stat-number" data-target="100">0</span>%
               </span>
@@ -786,7 +811,7 @@
             </div>
 
             <!-- Stat 3 -->
-            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="scroll-reveal-item">
               <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
                 <span class="stat-number" data-target="10">0</span>+
               </span>
@@ -794,7 +819,7 @@
             </div>
 
             <!-- Stat 4 -->
-            <div class="scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+            <div class="scroll-reveal-item">
               <span class="font-playfair text-5xl md:text-7xl text-lux-black font-medium tracking-tight block mb-2">
                 <span class="stat-number" data-target="5">0</span>+
               </span>
@@ -889,7 +914,7 @@
           </div>
 
           <!-- Timeline Item 1 -->
-          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item">
             <div class="w-full md:w-[45%] text-left md:text-right pr-0 md:pr-12 mb-4 md:mb-0">
               <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">01</span>
               <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Discovery</h4>
@@ -900,7 +925,7 @@
           </div>
 
           <!-- Timeline Item 2 -->
-          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item">
             <div class="w-full md:w-[45%] hidden md:block"></div>
             <div class="absolute left-6 md:left-[50%] -translate-x-[50%] w-3 h-3 rounded-full bg-[#C9A84C] border-4 border-[#F5EBE1] shadow-md"></div>
             <div class="w-full md:w-[45%] text-left pl-0 md:pl-12">
@@ -911,7 +936,7 @@
           </div>
 
           <!-- Timeline Item 3 -->
-          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item">
             <div class="w-full md:w-[45%] text-left md:text-right pr-0 md:pr-12 mb-4 md:mb-0">
               <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">03</span>
               <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Design</h4>
@@ -922,7 +947,7 @@
           </div>
 
           <!-- Timeline Item 4 -->
-          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-24 relative z-10 scroll-reveal-item">
             <div class="w-full md:w-[45%] hidden md:block"></div>
             <div class="absolute left-6 md:left-[50%] -translate-x-[50%] w-3 h-3 rounded-full bg-[#C9A84C] border-4 border-[#F5EBE1] shadow-md"></div>
             <div class="w-full md:w-[45%] text-left pl-0 md:pl-12">
@@ -933,7 +958,7 @@
           </div>
 
           <!-- Timeline Item 5 -->
-          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center relative z-10 scroll-reveal-item" style="opacity:0;transform:translateY(30px);">
+          <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center relative z-10 scroll-reveal-item">
             <div class="w-full md:w-[45%] text-left md:text-right pr-0 md:pr-12 mb-4 md:mb-0">
               <span class="font-playfair text-4xl md:text-5xl text-[#C9A84C] font-semibold block mb-2 text-lux-gold" style="color:#C9A84C !important;">05</span>
               <h4 class="font-sans text-lg font-semibold text-lux-black mb-2 uppercase tracking-wider">Delivery</h4>
@@ -1092,27 +1117,51 @@
         });
 
         // ── Section 2 & 6 & 8: Scroll Revelations ──
-        const reveals = document.querySelectorAll('.scroll-reveal-item');
-        reveals.forEach((el) => {
-          gsap.to(el, {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none"
-            }
+        // On desktop (>1024px): use GSAP for smooth animations
+        // On mobile (<= 1024px): CSS media query already reveals all cards
+        if (window.innerWidth > 1024 && typeof ScrollTrigger !== 'undefined') {
+          document.querySelectorAll('.animate-card, .scroll-reveal-item').forEach((el) => {
+            el.classList.add('anim-hidden');
+            gsap.to(el, {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none none"
+              }
+            });
           });
-        });
+        }
       } else {
         // Fallback reveals if GSAP is blocked/offline
-        document.querySelectorAll('.scroll-reveal-item, .hero-anim-up').forEach(function(el){
+        document.querySelectorAll('.scroll-reveal-item, .hero-anim-up, .animate-card').forEach(function(el){
           el.style.opacity = '1';
           el.style.transform = 'none';
         });
       }
+
+      // ── Always-on IntersectionObserver fallback (belt + suspenders) ──
+      // This runs on ALL devices regardless of GSAP. Reveals any card
+      // that GSAP missed because it was off-screen when script ran.
+      (function() {
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'none';
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05, rootMargin: '0px 0px 100px 0px' });
+
+        document.querySelectorAll('.animate-card, .scroll-reveal-item').forEach(function(el) {
+          io.observe(el);
+        });
+      })();
+
 
 
 
