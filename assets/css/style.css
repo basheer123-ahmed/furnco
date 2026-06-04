@@ -2798,10 +2798,87 @@ img, video, iframe {
   }
 }
 
+
 /* Force reveal elements on mobile/tablet viewports to bypass GSAP blocking */
 @media (max-width: 1024px) {
   .scroll-reveal-item, .animate-card, [style*="opacity:0"], [style*="opacity: 0"] {
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL NAVBAR — No-wrap + responsive scaling
+   Ensures every nav item (HOME, ABOUT US, PORTFOLIO, BLOGS,
+   CONTACT US, STORE) stays on a single line at all viewports.
+   ══════════════════════════════════════════════════════════════ */
+
+/* 1. Prevent any nav link from ever wrapping */
+.nav-links a,
+#nav-store,
+.nav-cta {
+  white-space: nowrap !important;
+}
+
+/* 2. Tablet — 1024px to 1200px: tighten gap + shrink font */
+@media (max-width: 1200px) {
+  .nav-links {
+    gap: 24px !important;
+  }
+  .nav-links a {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.07em !important;
+  }
+  .nav-cta {
+    padding: 9px 18px !important;
+    font-size: 0.70rem !important;
+  }
+  .nav-inner {
+    padding: 0 24px !important;
+  }
+}
+
+/* 3. Small tablet / large phone — 900px to 1024px */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 16px !important;
+  }
+  .nav-links a {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.05em !important;
+  }
+  .nav-cta {
+    padding: 8px 14px !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.08em !important;
+  }
+  .nav-inner {
+    padding: 0 16px !important;
+  }
+}
+
+/* 4. Mobile overlay menu — scale down font so no item wraps
+      at any screen width from 320px upward               */
+.mobile-nav-link {
+  white-space: nowrap !important;
+  font-size: clamp(1.4rem, 6vw, 2rem) !important;
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-link {
+    font-size: clamp(1.1rem, 5.5vw, 1.5rem) !important;
+    letter-spacing: 0.03em !important;
+  }
+  #mobile-menu {
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobile-nav-link {
+    font-size: clamp(1rem, 5vw, 1.3rem) !important;
+  }
+  #mobile-menu {
+    gap: 18px !important;
   }
 }
