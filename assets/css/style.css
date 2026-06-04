@@ -2754,3 +2754,46 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   GLOBAL RESPONSIVE SAFETY OVERRIDES — Furnco Interiors
+   ───────────────────────────────────────────────────────────── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure flex containers and grid layouts do not cause horizontal scrolling */
+.flex, .grid, .portfolio-grid, .nav-inner, .contact-grid {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Adjustments for extra small screen sizes (320px - 480px) */
+@media (max-width: 480px) {
+  h1, .text-5xl, .text-6xl, .text-7xl {
+    font-size: clamp(2.0rem, 8vw, 2.6rem) !important;
+    line-height: 1.25 !important;
+  }
+  h2, .text-3xl, .text-4xl {
+    font-size: clamp(1.6rem, 6vw, 2.0rem) !important;
+    line-height: 1.3 !important;
+  }
+  p, .text-base, .text-lg {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+  }
+  .blogs-hero {
+    padding-top: 110px !important;
+    padding-bottom: 60px !important;
+  }
+  .contact-hero {
+    padding: 120px 0 60px !important;
+  }
+}
