@@ -659,18 +659,18 @@
     <!-- Luxury Hero Section -->
     <section class="relative overflow-hidden blogs-hero bg-[#F8F3EC]">
       <div class="luxury-grid-overlay"></div>
-      <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10 hero-reveal">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(212,175,55,0.08)] border border-[rgba(212,175,55,0.22)] text-[#8F7226] text-xs font-semibold tracking-widest uppercase mb-6">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
+        <div class="hero-badge opacity-0 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(212,175,55,0.08)] border border-[rgba(212,175,55,0.22)] text-[#8F7226] text-xs font-semibold tracking-widest uppercase mb-6" style="transform: translateY(30px);">
           <span class="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-pulse"></span>
           FURNCO INTERIORS JOURNAL
         </div>
-        <h1 class="heading-luxury text-4xl md:text-6xl font-medium tracking-tight leading-tight mb-8">
+        <h1 class="hero-title opacity-0 heading-luxury text-4xl md:text-6xl font-medium tracking-tight leading-tight mb-8" style="transform: translateY(45px);">
           Design Stories & <br class="hidden md:block"><span class="italic text-[#D4AF37]">Interior Insights</span>
         </h1>
-        <p class="text-gray-700 font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        <p class="hero-desc opacity-0 text-gray-700 font-light text-base md:text-lg max-w-2xl mx-auto leading-relaxed" style="transform: translateY(30px);">
           Explore luxury interiors, design inspiration, project journeys, and expert guidance from Furnco Interiors.
         </p>
-        <div class="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-10"></div>
+        <div class="hero-divider h-[1.5px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-10" style="width: 0px;"></div>
       </div>
     </section>
 
@@ -1318,11 +1318,12 @@
           gsap.registerPlugin(ScrollTrigger);
         }
 
-        // Hero animations
-        gsap.fromTo('.hero-reveal', 
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 1.2, ease: "power4.out", delay: 0.1 }
-        );
+        // Staggered cinematic Hero timeline animations
+        var tl = gsap.timeline();
+        tl.to('.hero-badge', { opacity: 1, y: 0, duration: 1.0, ease: "power4.out" })
+          .to('.hero-title', { opacity: 1, y: 0, duration: 1.2, ease: "power4.out" }, "-=0.75")
+          .to('.hero-desc', { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, "-=0.85")
+          .to('.hero-divider', { width: "64px", duration: 1.2, ease: "power2.out" }, "-=0.65");
 
         // Card / section reveals
         if (typeof ScrollTrigger !== 'undefined') {
@@ -1352,9 +1353,12 @@
           el.style.opacity = '1';
           el.style.transform = 'none';
         });
-        document.querySelectorAll('.hero-reveal').forEach(function(el){
+        document.querySelectorAll('.hero-badge, .hero-title, .hero-desc').forEach(function(el){
           el.style.opacity = '1';
           el.style.transform = 'none';
+        });
+        document.querySelectorAll('.hero-divider').forEach(function(el){
+          el.style.width = '64px';
         });
       }
 
