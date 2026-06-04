@@ -359,33 +359,48 @@
         border-radius: 4px;
         box-shadow: 0 15px 35px rgba(10, 6, 4, 0.08);
         cursor: pointer;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
       }
-      .video-card-premium img {
-        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      .video-card-premium:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 45px rgba(10, 6, 4, 0.25);
       }
-      .video-card-premium:hover img {
-        transform: scale(1.08);
+      .video-card-premium .video-element {
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .video-card-premium:hover .video-element {
+        transform: scale(1.06);
+      }
+      .video-card-overlay {
+        background: rgba(10, 6, 4, 0.5);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+      }
+      .video-card-premium:hover .video-card-overlay {
+        background: rgba(10, 6, 4, 0.22);
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
       }
       .video-play-btn {
-        width: 56px;
-        height: 56px;
-        background: rgba(10, 6, 4, 0.45);
+        width: 62px;
+        height: 62px;
+        background: rgba(10, 6, 4, 0.7);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: #F8F3EC;
+        border: 2px solid #D4AF37;
+        color: #D4AF37;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 8px 32px rgba(10, 6, 4, 0.18);
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
         position: relative;
       }
       .video-play-btn::before {
         content: '';
         position: absolute;
-        inset: -5px;
+        inset: -6px;
         border: 1px dashed rgba(212, 175, 55, 0.55);
         border-radius: 50%;
         transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -399,11 +414,14 @@
         background: #D4AF37;
         border-color: #D4AF37;
         color: #0A0604;
-        transform: scale(1.06);
-        box-shadow: 0 12px 40px rgba(212, 175, 55, 0.45);
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+      }
+      .video-card-premium:hover .video-play-btn svg {
+        fill: #0A0604;
       }
       .video-card-premium:hover .video-play-btn::before {
-        inset: -8px;
+        inset: -10px;
         border-color: #D4AF37;
       }
 
@@ -711,35 +729,61 @@
           <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-4"></div>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
           <!-- Video Card 1 -->
-          <div class="video-card-premium max-w-[220px] mx-auto rounded-sm overflow-hidden" data-video-url="images/project-video-1.mp4" data-title="The Prestige Residency Walkthrough">
-            <div class="aspect-[9/16] relative overflow-hidden bg-black">
-              <video src="images/project-video-1.mp4" class="w-full h-full object-cover" preload="metadata"></video>
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div class="video-play-btn" aria-label="Play video">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 2px;"><polygon points="6,3 20,12 6,21" /></svg>
+          <div class="video-card-premium w-full max-w-[340px] h-[450px] mx-auto md:mx-0 rounded-sm overflow-hidden" data-video-url="images/project-video-1.mp4" data-title="The Prestige Residency Walkthrough">
+            <div class="h-full w-full relative overflow-hidden bg-black">
+              <video src="images/project-video-1.mp4" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out video-element" preload="metadata" muted loop playsinline></video>
+              <!-- Dark Glass Overlay -->
+              <div class="absolute inset-0 video-card-overlay transition-all duration-500 flex flex-col justify-between p-6">
+                <!-- Top Badge -->
+                <div>
+                  <span class="inline-block bg-[rgba(212,175,55,0.15)] backdrop-blur-md border border-[rgba(212,175,55,0.3)] text-[#FAF5EE] text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-sm shadow-md">
+                    RESIDENTIAL TOUR
+                  </span>
                 </div>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4 text-white z-10">
-                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">RESIDENTIAL TOUR</span>
-                <h3 class="heading-luxury text-white text-lg md:text-xl font-medium mt-1">The Prestige Residency — Living Space Tour</h3>
+                
+                <!-- Center Play Button (Dynamic Accent) -->
+                <div class="flex items-center justify-center">
+                  <div class="video-play-btn transition-all duration-500" aria-label="Play video">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#D4AF37" style="margin-left: 3px;"><polygon points="6,3 20,12 6,21" /></svg>
+                  </div>
+                </div>
+                
+                <!-- Bottom Typography -->
+                <div class="text-left space-y-1 relative z-10">
+                  <span class="text-[10px] tracking-widest uppercase font-bold text-[#D4AF37]">Bengaluru Project</span>
+                  <h3 class="font-playfair text-white text-xl font-medium tracking-wide leading-snug drop-shadow-md">The Prestige Residency — Living Space Tour</h3>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Video Card 2 -->
-          <div class="video-card-premium max-w-[220px] mx-auto rounded-sm overflow-hidden" data-video-url="images/project-video-2.mp4" data-title="Serene Haven Villa Tour">
-            <div class="aspect-[9/16] relative overflow-hidden bg-black">
-              <video src="images/project-video-2.mp4" class="w-full h-full object-cover" preload="metadata"></video>
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div class="video-play-btn" aria-label="Play video">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 2px;"><polygon points="6,3 20,12 6,21" /></svg>
+          <div class="video-card-premium w-full max-w-[340px] h-[450px] mx-auto md:mx-0 rounded-sm overflow-hidden" data-video-url="images/project-video-2.mp4" data-title="Serene Haven Villa Tour">
+            <div class="h-full w-full relative overflow-hidden bg-black">
+              <video src="images/project-video-2.mp4" class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out video-element" preload="metadata" muted loop playsinline></video>
+              <!-- Dark Glass Overlay -->
+              <div class="absolute inset-0 video-card-overlay transition-all duration-500 flex flex-col justify-between p-6">
+                <!-- Top Badge -->
+                <div>
+                  <span class="inline-block bg-[rgba(212,175,55,0.15)] backdrop-blur-md border border-[rgba(212,175,55,0.3)] text-[#FAF5EE] text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-sm shadow-md">
+                    VILLA DESIGN
+                  </span>
                 </div>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4 text-white z-10">
-                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">VILLA DESIGN</span>
-                <h3 class="heading-luxury text-white text-lg md:text-xl font-medium mt-1">Serene Haven Villa — Bed &amp; Dressing Suite Walkthrough</h3>
+                
+                <!-- Center Play Button (Dynamic Accent) -->
+                <div class="flex items-center justify-center">
+                  <div class="video-play-btn transition-all duration-500" aria-label="Play video">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#D4AF37" style="margin-left: 3px;"><polygon points="6,3 20,12 6,21" /></svg>
+                  </div>
+                </div>
+                
+                <!-- Bottom Typography -->
+                <div class="text-left space-y-1 relative z-10">
+                  <span class="text-[10px] tracking-widest uppercase font-bold text-[#D4AF37]">Villa Walkthrough</span>
+                  <h3 class="font-playfair text-white text-xl font-medium tracking-wide leading-snug drop-shadow-md">Serene Haven Villa — Bed &amp; Dressing Suite</h3>
+                </div>
               </div>
             </div>
           </div>
@@ -1218,6 +1262,17 @@
       var videoCards = document.querySelectorAll('.video-card-premium');
 
       videoCards.forEach(function(card){
+        // Dynamic play-on-hover logic
+        var videoEl = card.querySelector('.video-element');
+        if (videoEl) {
+          card.addEventListener('mouseenter', function(){
+            videoEl.play().catch(function(e){});
+          });
+          card.addEventListener('mouseleave', function(){
+            videoEl.pause();
+          });
+        }
+
         card.addEventListener('click', function(){
           var videoUrl = card.getAttribute('data-video-url');
           if (videoUrl) {
