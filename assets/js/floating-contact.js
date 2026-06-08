@@ -14,14 +14,12 @@
       z-index: 9999;
       font-family: 'Inter', sans-serif;
       opacity: 0;
-      transform: translateX(100px);
-      animation: furnco-slide-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
+      animation: furnco-fade-in 0.6s ease forwards 0.5s;
     }
 
-    @keyframes furnco-slide-in {
+    @keyframes furnco-fade-in {
       to {
         opacity: 1;
-        transform: translateX(0);
       }
     }
 
