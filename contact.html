@@ -623,7 +623,7 @@
       .footer-contact li { margin-bottom: 10px; font-size: 0.9rem; }
     </style>
     <!-- Floating Contact Buttons (Call & WhatsApp) -->
-    <script src="assets/js/floating-contact.js" defer></script>
+    <script src="assets/js/floating-contact.js?v=2" defer></script>
 </head>
 <body style="margin:0;padding:0;background:#F5EBE1;">
     <!-- Premium Dark Navbar -->
@@ -1297,13 +1297,8 @@
       if (urlParams.get('booking') === 'true') {
         window.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
-            const formCard = document.querySelector('.contact-form-card');
-            if (formCard) {
-              formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            if (inquirySelect) {
-              inquirySelect.value = 'Experience Center Visit';
-              inquirySelect.dispatchEvent(new Event('change'));
+            if (window.openConsultationModal) {
+              window.openConsultationModal();
             }
           }, 300);
         });
@@ -1414,33 +1409,16 @@
     <!-- Script to handle Popup triggering and validation -->
     <script>
     (function() {
-      let popupShown = false;
       const modal = document.getElementById('consultation-modal');
       if (!modal) return;
       const card = modal.querySelector('.modal-card');
 
-      function triggerPopup() {
-        if (popupShown) return;
-        popupShown = true;
+      window.openConsultationModal = function() {
         modal.style.display = 'flex';
         void modal.offsetWidth; // force reflow
         modal.style.opacity = '1';
         if (card) card.style.transform = 'scale(1)';
-      }
-
-      // Trigger: 10s Timer
-      setTimeout(triggerPopup, 10000);
-
-      // Trigger: 50% Scroll
-      window.addEventListener('scroll', function() {
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (scrollHeight > 0) {
-          const scrolledPercent = (window.scrollY / scrollHeight) * 100;
-          if (scrolledPercent >= 50) {
-            triggerPopup();
-          }
-        }
-      });
+      };
 
       // Close actions
       const closeBtn = document.getElementById('modal-close');

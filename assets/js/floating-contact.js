@@ -225,20 +225,12 @@
   // 3. Handle click behavior on contact.html
   setTimeout(() => {
     const bookBtn = document.getElementById('floating-book-visit-btn');
-    if (bookBtn && (window.location.pathname.includes('contact.html') || window.location.hash.includes('booking'))) {
+    const isContactPage = window.location.pathname.includes('contact') || window.location.hash.includes('booking');
+    if (bookBtn && isContactPage) {
       bookBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        const bookCta = document.getElementById('book-visit-cta');
-        if (bookCta) {
-          bookCta.click();
-        } else {
-          const formCard = document.querySelector('.contact-form-card');
-          if (formCard) formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          const inquirySelect = document.getElementById('inquiry-type');
-          if (inquirySelect) {
-            inquirySelect.value = 'Experience Center Visit';
-            inquirySelect.dispatchEvent(new Event('change'));
-          }
+        if (window.openConsultationModal) {
+          window.openConsultationModal();
         }
       });
     }
