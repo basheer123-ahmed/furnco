@@ -25,19 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
     // 3. Hero Animations
-    const heroTl = gsap.timeline();
-    heroTl.to(".gsap-hero-text", {
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power4.out"
-    })
-    .to(".gsap-hero-stats", {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out"
-    }, "-=0.5");
+    if (document.querySelector(".gsap-hero-text")) {
+        const heroTl = gsap.timeline();
+        heroTl.to(".gsap-hero-text", {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "power4.out"
+        })
+        .to(".gsap-hero-stats", {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+        }, "-=0.5");
+    }
 
     // 4. Counter Animation
     const counters = document.querySelectorAll('.counter');
@@ -103,16 +105,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 7. Watermark Parallax
-    gsap.to(".parallax-watermark", {
-        xPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".parallax-watermark",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        }
-    });
+    if (document.querySelector(".parallax-watermark")) {
+        gsap.to(".parallax-watermark", {
+            xPercent: -20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".parallax-watermark",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    }
 
     // 8. Horizontal Timeline (Brand Journey)
     const timelineScroll = document.querySelector('.timeline-scroll-container');

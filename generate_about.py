@@ -6,7 +6,32 @@ html_content = """<!DOCTYPE html>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="color-scheme" content="only light">
     <title>About Us | Furnco Interiors</title>
+    <!-- Developer Credits & Author SEO -->
+    <meta name="author" content="MUCCHUKOT BASHEER AHMED" />
+    <meta name="designer" content="MUCCHUKOT BASHEER AHMED" />
+    <meta name="developer" content="MUCCHUKOT BASHEER AHMED" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Furnco Interiors",
+      "url": "https://www.furncointeriors.com/",
+      "author": {
+        "@type": "Person",
+        "name": "MUCCHUKOT BASHEER AHMED",
+        "url": "https://www.linkedin.com/in/m-basheer-ahmed/",
+        "sameAs": "https://www.linkedin.com/in/m-basheer-ahmed/"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "MUCCHUKOT BASHEER AHMED",
+        "url": "https://www.linkedin.com/in/m-basheer-ahmed/",
+        "sameAs": "https://www.linkedin.com/in/m-basheer-ahmed/"
+      }
+    }
+    </script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Tailwind -->
@@ -31,6 +56,9 @@ html_content = """<!DOCTYPE html>
         }
     </script>
     <style>
+        :root {
+            color-scheme: only light;
+        }
         /* Lenis Smooth Scroll */
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto; }

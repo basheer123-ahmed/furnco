@@ -1,8 +1,61 @@
 
-
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php82” package as the default “PHP” programming language.
 <IfModule mime_module>
   AddHandler application/x-httpd-ea-php82___lsphp .php .php8 .phtml
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
+
+# ── COMPRESSION (GZIP/DEFLATE) ──
+<IfModule mod_deflate.c>
+  # Compress HTML, CSS, JavaScript, Text, XML and fonts
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/javascript application/javascript application/x-javascript application/xml application/xml+rss application/xhtml+xml application/x-font-ttf application/x-font-opentype application/vnd.ms-fontobject image/svg+xml image/x-icon
+</IfModule>
+
+# ── BROWSER CACHING (EXPIRES HEADERS) ──
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Default expiration: 1 month
+  ExpiresDefault "access plus 1 month"
+  
+  # CSS and JavaScript: 1 year (highly recommended for performance)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType application/x-javascript "access plus 1 year"
+  
+  # Images: 1 year
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # Web Fonts: 1 year
+  ExpiresByType font/truetype "access plus 1 year"
+  ExpiresByType font/opentype "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/x-font-woff "access plus 1 year"
+  
+  # HTML documents: Revalidate instantly to show updates
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# ── CACHE CONTROL HEADERS ──
+<IfModule mod_headers.c>
+  # Cache static assets
+  <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf|woff|woff2)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+  
+  # HTML must revalidate
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=0, private, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Disable directory browsing for security
+Options -Indexes
