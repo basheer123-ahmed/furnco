@@ -1253,10 +1253,29 @@
           }
           
           @media (max-width: 1150px) {
-            .title-ribbon { display: none; }
+            .title-with-ribbons {
+              gap: 0.75rem !important;
+            }
+            .title-ribbon {
+              max-width: 120px !important;
+              min-width: 30px !important;
+            }
             .title-with-ribbons h2 {
               white-space: nowrap !important;
-              font-size: clamp(1.1rem, 5.5vw, 1.8rem) !important;
+              font-size: clamp(0.9rem, 4vw, 1.6rem) !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .title-with-ribbons {
+              gap: 0.5rem !important;
+            }
+            .title-ribbon {
+              max-width: 60px !important;
+              min-width: 20px !important;
+            }
+            .title-with-ribbons h2 {
+              white-space: nowrap !important;
+              font-size: clamp(0.8rem, 4.2vw, 1.2rem) !important;
             }
           }
 
