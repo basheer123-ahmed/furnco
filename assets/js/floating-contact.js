@@ -100,21 +100,21 @@
       color: #0A0604;
     }
 
-    /* WhatsApp Specific */
+    /* WhatsApp Specific - Luxury Gold Styling */
     .btn-whatsapp {
-      border-color: rgba(37, 211, 102, 0.4);
+      border-color: rgba(212, 175, 55, 0.45);
     }
     .btn-whatsapp .btn-icon {
-      color: #25D366;
+      color: #D4AF37;
     }
     .btn-whatsapp:hover {
-      background: #25D366;
-      color: #fff;
-      border-color: #25D366;
-      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.45);
+      background: #D4AF37;
+      color: #0A0604;
+      border-color: #D4AF37;
+      box-shadow: 0 12px 40px rgba(212, 175, 55, 0.45);
     }
     .btn-whatsapp:hover .btn-icon {
-      color: #fff;
+      color: #0A0604;
     }
 
     /* Book Visit Specific */

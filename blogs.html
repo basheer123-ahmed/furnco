@@ -47,6 +47,8 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- Global Animations JS -->
     <script src="assets/js/main.js" defer></script>
+    <!-- Blog Data Store -->
+    <script src="assets/js/blogs-data.js"></script>
 
     <style>
       /* ── Base navbar ─────────────────────────────────────── */
@@ -688,12 +690,12 @@
       
       /* Explicit hero padding to prevent overlapping with the fixed navbar */
       .blogs-hero {
-        padding-top: 130px;
+        padding-top: 165px;
         padding-bottom: 80px;
       }
       @media (min-width: 768px) {
         .blogs-hero {
-          padding-top: 180px;
+          padding-top: 200px;
           padding-bottom: 110px;
         }
       }
@@ -810,7 +812,7 @@
               An in-depth look at how personalized craftsmanship, tailormade layouts, and premium materials elevate standard residential spaces into curated personal sanctuaries of distinction.
             </p>
             <div>
-              <a href="contact.html" class="btn-luxury-gold">Read Article &rarr;</a>
+              <a href="blog-details.html?slug=the-art-of-bespoke-living" class="btn-luxury-gold">Read Article &rarr;</a>
             </div>
           </div>
         </div>
@@ -907,79 +909,25 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
           
-          <!-- Trident Machinery Case Study Card -->
-          <div class="card-premium rounded-sm overflow-hidden flex flex-col cursor-pointer" data-categories="stories luxury-interiors" onclick="openTridentModal()">
-            <div class="relative overflow-hidden h-[240px]">
-              <img src="images/trident_machinery_facade.png" alt="Trident Machinery Storefront" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
-              <div class="absolute top-4 left-4 bg-[#D4AF37] text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-sm shadow-md">NEW CASE STUDY</div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Project Stories</span>
-                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Bespoke Commercial Architecture: Trident Machinery HQ</h3>
-                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
-                  Step inside the state-of-the-art corporate offices and storefront designed for Trident Machinery Corporation, Bengaluru.
-                </p>
-              </div>
-              <div>
-                <span class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Case Study &rarr;</span>
-              </div>
-            </div>
-          </div>
-
           <!-- Card 1 -->
           <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="trends luxury-interiors">
             <div class="relative overflow-hidden h-[240px]">
-              <img src="images/hero-slide2.png" alt="Luxury Trends" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+              <a href="blog-details.html?slug=top-luxury-interior-design-trends-2026">
+                <img src="images/hero-slide2.png" alt="Luxury Trends" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+              </a>
             </div>
             <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Design Trends</span>
-                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Top Luxury Interior Design Trends for 2026</h3>
+                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">
+                  <a href="blog-details.html?slug=top-luxury-interior-design-trends-2026" class="hover:text-[#D4AF37] transition-colors">Top Luxury Interior Design Trends for 2026</a>
+                </h3>
                 <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
                   Discover how biophilic integration, micro-cement finishes, and brass details are defining high-end properties this year.
                 </p>
               </div>
               <div>
-                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="living-room luxury-interiors">
-            <div class="relative overflow-hidden h-[240px]">
-              <img src="images/walk-living.png" alt="Living Room Guide" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Living Room Design</span>
-                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Modern Luxury Living Room Guide</h3>
-                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
-                  Learn to balance spatial scale, ambient task lighting, and statement sofas to formulate a grand entertainment area.
-                </p>
-              </div>
-              <div>
-                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="card-premium rounded-sm overflow-hidden flex flex-col" data-categories="kitchens">
-            <div class="relative overflow-hidden h-[240px]">
-              <img src="images/walk-kitchen.png" alt="Kitchen Guide" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">Modular Kitchens</span>
-                <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">Complete Modular Kitchen Planning Guide</h3>
-                <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6">
-                  An essential breakdown of kitchen triangle layouts, dynamic smart pantry hardware, and stone worktop options.
-                </p>
-              </div>
-              <div>
-                <a href="contact.html" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+                <a href="blog-details.html?slug=top-luxury-interior-design-trends-2026" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
               </div>
             </div>
           </div>
@@ -1196,7 +1144,7 @@
                 <div class="md:col-span-1">
                     <div class="mb-6">
                         <a href="index.html" class="inline-block" aria-label="Furnco Interiors home">
-                            <img src="images/logo-footer.png" alt="Furnco Interiors Logo" class="h-10 w-auto" style="filter: brightness(0) invert(1); max-height: 42px;">
+                            <img src="images/logo-footer.png" alt="Furnco Interiors Logo" style="height: 65px; width: auto; max-width: 180px; object-fit: contain; filter: brightness(0) invert(1);" loading="lazy" decoding="async">
                         </a>
                     </div>
                     <p class="font-light text-sm leading-relaxed mb-6">Modern Luxury Interior Design Studio<br>Bengaluru, India</p>
@@ -1537,10 +1485,49 @@
       var modal = document.getElementById('trident-case-study-modal');
       if (modal) modal.classList.add('active');
     };
-    window.closeTridentModal = function() {
-      var modal = document.getElementById('trident-case-study-modal');
-      if (modal) modal.classList.remove('active');
-    };
+    // Dynamic Blog Card Auto-renderer
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof BLOGS_DATA !== 'undefined' && Array.isArray(BLOGS_DATA)) {
+        const blogGrid = document.getElementById('blog-grid');
+        if (blogGrid) {
+          BLOGS_DATA.forEach(function(blog) {
+            if (!document.querySelector('[data-slug="' + blog.slug + '"]')) {
+              const card = document.createElement('div');
+              card.className = 'card-premium rounded-sm overflow-hidden flex flex-col';
+              card.setAttribute('data-categories', blog.categorySlug || 'all');
+              card.setAttribute('data-slug', blog.slug);
+              card.innerHTML = `
+                <div class="relative overflow-hidden h-[240px]">
+                  <a href="blog-details.html?slug=${blog.slug}">
+                    <img src="${blog.featuredImage}" alt="${blog.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+                  </a>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span class="text-xs tracking-widest uppercase font-semibold text-[#D4AF37]">${blog.category}</span>
+                    <h3 class="heading-luxury text-xl font-medium mt-2 mb-3">
+                      <a href="blog-details.html?slug=${blog.slug}" class="hover:text-[#D4AF37] transition-colors">${blog.title}</a>
+                    </h3>
+                    <p class="text-gray-700 font-light text-xs md:text-sm leading-relaxed mb-6 line-clamp-3">
+                      ${blog.excerpt}
+                    </p>
+                  </div>
+                  <div>
+                    <a href="blog-details.html?slug=${blog.slug}" class="text-[#0A0604] font-semibold text-xs tracking-wider uppercase hover:text-[#D4AF37] transition-colors">Read Article &rarr;</a>
+                  </div>
+                </div>
+              `;
+              const firstCard = blogGrid.querySelector('.card-premium');
+              if (firstCard && firstCard.nextSibling) {
+                blogGrid.insertBefore(card, firstCard.nextSibling);
+              } else {
+                blogGrid.appendChild(card);
+              }
+            }
+          });
+        }
+      }
+    });
     </script>
 </body>
 </html>
