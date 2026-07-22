@@ -54,6 +54,7 @@
   # HTML must revalidate
   <FilesMatch "\.(html|htm)$">
     Header set Cache-Control "max-age=0, private, must-revalidate"
+    Header set X-Robots-Tag "index, follow"
   </FilesMatch>
 </IfModule>
 

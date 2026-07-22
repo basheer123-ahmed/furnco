@@ -814,10 +814,10 @@
     const id = target.id || '';
     const href = target.getAttribute('href') || '';
 
-    // Handle "Book Consultation" triggers
+    // Handle "Book Consultation" triggers — redirect to contact.html
     if (text.includes('book consultation') || id === 'hero-cta-contact') {
       e.preventDefault();
-      window.openConsultationModal();
+      window.location.href = 'contact.html';
     }
     // Handle "Book Visit" / "Book Experience Center Visit" triggers
     else if (
